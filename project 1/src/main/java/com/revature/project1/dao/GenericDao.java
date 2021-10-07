@@ -8,7 +8,6 @@ public interface GenericDao<T> {
 List<T> getAll();
 	
 	
-	
 	T getById (int id);
 	
 	void update(T t);
