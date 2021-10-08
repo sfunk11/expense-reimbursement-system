@@ -81,7 +81,29 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User getByName(String username) {
-		// TODO Auto-generated method stub
+		
+		try(Connection con = dbCon.getDBConnection()){
+			
+			String sql = "select * from users where username = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, username);
+			
+			ResultSet rs = ps.executeQuery();
+			User user = new User();
+		
+			
+			while (rs.next()) {
+				user = (new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6), rs.getInt(7)));
+			}
+			
+			return user;
+			
+		}catch (SQLException e) {
+			
+			LogDriver.log.error(e);
+		}
+		
 		return null;
 	}
 
