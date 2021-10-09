@@ -85,7 +85,22 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 	@Override
 	public void insert(ReimbursementItem t) {
-		
+		try(Connection con = dbCon.getDBConnection()){
+			
+			String sql = "{? = call insert_reimb(?,?,?,?,?)}";
+			CallableStatement cs = con.prepareCall(sql);
+			cs.registerOutParameter(1, Types.VARCHAR);
+			cs.setDouble(2,t.getAmount());
+			cs.setString(3, t.getDescription());
+			cs.setBytes(4, null);
+			cs.setInt(5,  t.getAuthorId());
+			cs.setInt(6,  t.getReimbTypeId());
+			cs.execute();
+				
+			
+		}catch (SQLException e) {
+			LogDriver.log.error(e);
+		}
 
 	}
 

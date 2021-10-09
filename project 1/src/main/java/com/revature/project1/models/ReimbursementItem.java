@@ -16,7 +16,7 @@ public class ReimbursementItem {
 	private int reimbTypeId;
 	
 	public ReimbursementItem() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public ReimbursementItem(int reimbId, double amount, Timestamp submittedAt, Timestamp resolvedAt, String description,
