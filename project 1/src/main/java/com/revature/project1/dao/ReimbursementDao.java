@@ -10,5 +10,9 @@ public interface ReimbursementDao extends GenericDao<ReimbursementItem> {
 	
 	List<ReimbursementItem> getByUsername(String username);
 	
+	void approveItem(ReimbursementItem item);
+	
+	void rejectItem(ReimbursementItem item);
+	
 	
 }

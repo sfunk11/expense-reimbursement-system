@@ -1,12 +1,14 @@
 package com.revature.project1.models;
 
+import java.sql.Timestamp;
+
 public class ReimbursementItem {
 
 	
 	private int reimbId;
 	private double amount;
-	private String submittedAt;
-	private String resolvedAt;
+	private Timestamp submittedAt;
+	private Timestamp resolvedAt;
 	private String description;
 	private int authorId;
 	private int resolverId;
@@ -17,7 +19,7 @@ public class ReimbursementItem {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReimbursementItem(int reimbId, double amount, String submittedAt, String resolvedAt, String description,
+	public ReimbursementItem(int reimbId, double amount, Timestamp submittedAt, Timestamp resolvedAt, String description,
 			int authorId, int resolverId, int reimbStatus, int reimbTypeId) {
 		super();
 		this.reimbId = reimbId;
@@ -31,7 +33,7 @@ public class ReimbursementItem {
 		this.reimbTypeId = reimbTypeId;
 	}
 
-	public ReimbursementItem(double amount, String resolvedAt, String description, int authorId, int resolverId,
+	public ReimbursementItem(double amount, Timestamp resolvedAt, String description, int authorId, int resolverId,
 			int reimbStatus, int reimbTypeId) {
 		super();
 		this.amount = amount;
@@ -51,13 +53,10 @@ public class ReimbursementItem {
 		this.amount = amount;
 	}
 
-	public String getResolvedAt() {
+	public Timestamp getResolvedAt() {
 		return resolvedAt;
 	}
 
-	public void setResolvedAt(String resolvedAt) {
-		this.resolvedAt = resolvedAt;
-	}
 
 	public String getDescription() {
 		return description;
@@ -103,7 +102,7 @@ public class ReimbursementItem {
 		return reimbId;
 	}
 
-	public String getSubmittedAt() {
+	public Timestamp getSubmittedAt() {
 		return submittedAt;
 	}
 
