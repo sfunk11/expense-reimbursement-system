@@ -46,7 +46,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			}
 			
 			
-		}catch (SQLException e) {
+		}catch (Exception e) {
 			LogDriver.log.error(e);
 		}
 		
@@ -70,7 +70,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			
 			return item;
 			
-		}catch (SQLException e) {
+		}catch (Exception e) {
 			LogDriver.log.error(e);
 		}
 		return null;
@@ -98,7 +98,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			cs.execute();
 				
 			
-		}catch (SQLException e) {
+		}catch (Exception e) {
 			LogDriver.log.error(e);
 		}
 
@@ -126,7 +126,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			}
 			
 			
-		}catch (SQLException e) {
+		}catch (Exception e) {
 			LogDriver.log.error(e);
 		}
 		
@@ -151,7 +151,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			}
 			
 			
-		}catch (SQLException e) {
+		}catch (Exception e) {
 			LogDriver.log.error(e);
 		}
 		
@@ -174,7 +174,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			cs.execute();
 
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			LogDriver.log.error(e);
 		}
 		
@@ -195,7 +195,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			cs.execute();
 
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			LogDriver.log.error(e);
 		}
 		

@@ -15,4 +15,14 @@
   	<url-pattern>*.view</url-pattern>
   
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>APIRouter</servlet-name>
+  	<servlet-class>com.revature.project1.servlets.APIRouterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>APIRouter</servlet-name>
+  	<url-pattern>*.api</url-pattern>
+  
+  </servlet-mapping>
 </web-app>
