@@ -150,7 +150,7 @@ public class UserDaoImpl implements UserDao {
 	public User getByName(String username) {
 		
 		try(Connection con = dbCon.getDBConnection()){
-			
+			System.out.println("in uDao.getByName");
 			String sql = "select * from users where ers_username = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, username);
