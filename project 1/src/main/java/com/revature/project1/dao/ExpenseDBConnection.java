@@ -27,11 +27,18 @@ public class ExpenseDBConnection {
 	}
 	
 	
-	public Connection getDBConnection() throws SQLException {
+	public Connection getDBConnection() throws SQLException, ClassNotFoundException {
 		final String URL = p.getProperty("url");
 		final String USERNAME = p.getProperty("username");
 		final String PASSWORD = p.getProperty("password");
 		
-		return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+		try {
+            Class.forName("org.postgresql.Driver");
+           
+        } catch(ClassNotFoundException e) {
+           e.printStackTrace();
+        }
+		 return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+		
 	}
 }

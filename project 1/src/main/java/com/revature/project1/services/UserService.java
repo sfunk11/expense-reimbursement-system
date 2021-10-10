@@ -20,15 +20,15 @@ public class UserService {
 	}
 	
 	
-	public User logIn( String username, String password) {
+	public User verifyUserCreds( String username, String password) {
 		
 		try {
-			System.out.println("in User service");
+			
 			User user = uDao.getByName(username);
 			
 			if (user.getPassword().equals(password.trim())) {
 				LogDriver.log.info(username + "has logged in.");
-				System.out.println(user);
+				
 				return user;
 			} else {
 				throw new IllegalArgumentException("That username and password do not match any users.");
@@ -47,6 +47,9 @@ public class UserService {
 	}
 	
 	
-	
+	public User registerUser() {
+		//ToDo: Implement method
+		return null;
+	}
 
 }

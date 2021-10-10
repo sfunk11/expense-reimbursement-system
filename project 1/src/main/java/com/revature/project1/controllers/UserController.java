@@ -16,9 +16,9 @@ public class UserController {
 	
 	public static String login(HttpServletRequest req) {
 		
-		System.out.println("in user controller");
-		User user = uServ.logIn(req.getParameter("username"), req.getParameter("password"));
-		System.out.println(user);
+		
+		User user = uServ.verifyUserCreds(req.getParameter("username"), req.getParameter("password"));
+	
 		if(!req.getMethod().equals("POST")) {
 			return "html/unsuccessfullogin.html";
 		}
@@ -26,11 +26,16 @@ public class UserController {
 		
 		if (user == null) {
 			return "wrongcreds.view";
-		}else {
+		}else{
 			req.getSession().setAttribute("currentUser", user);
-			return "html/home.html";
+			
+			if(user.getRoleId() == 1) {
+				return "html/home.html";
+			} else {
+			
+			return "html/manager.html";
 		}
-		
+		}
 	}
 	
 }

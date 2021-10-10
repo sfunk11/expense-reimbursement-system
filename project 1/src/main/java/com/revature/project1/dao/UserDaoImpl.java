@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
 		List<User> userList = new ArrayList<>();
 		try(Connection con = dbCon.getDBConnection()){
 			
-			String sql = "select * from users";
+			String sql = "select * from ers_users";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			
@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 			}
 			
 			
-		}catch (SQLException e) {
+		}catch (Exception e) {
 			LogDriver.log.error(e);
 		}
 		
@@ -56,7 +56,7 @@ public class UserDaoImpl implements UserDao {
 	public User getById(int id) {
 		try(Connection con = dbCon.getDBConnection()){
 			
-			String sql = "select * from users where ers_users_id = ?";
+			String sql = "select * from ers_users where ers_users_id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -67,7 +67,7 @@ public class UserDaoImpl implements UserDao {
 			}
 			return user;
 			
-		}catch (SQLException e) {
+		}catch (Exception e) {
 			LogDriver.log.error(e);
 		}
 		
@@ -98,7 +98,7 @@ public class UserDaoImpl implements UserDao {
 			 cs.execute();
 					
 			
-		}catch (SQLException e) {
+		}catch (Exception e) {
 			
 			LogDriver.log.error(e);
 		}
@@ -115,7 +115,7 @@ public class UserDaoImpl implements UserDao {
 			ps.setString(1, t.getUsername());
 			ps.execute();		
 			
-		}catch (SQLException e) {
+		}catch (Exception e) {
 			
 			LogDriver.log.error(e);
 		}
@@ -127,7 +127,7 @@ public class UserDaoImpl implements UserDao {
 		List<User> userList = new ArrayList<>();
 		try(Connection con = dbCon.getDBConnection()){
 			
-			String sql = "select * from users where user_role_id = ?";
+			String sql = "select * from ers_users where user_role_id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, roleId);
 			ResultSet rs = ps.executeQuery();
@@ -137,7 +137,7 @@ public class UserDaoImpl implements UserDao {
 						rs.getString(5), rs.getString(6), rs.getInt(7)));
 			}
 			
-		}catch (SQLException e) {
+		}catch (Exception e) {
 			LogDriver.log.error(e);
 		}
 		
@@ -150,8 +150,8 @@ public class UserDaoImpl implements UserDao {
 	public User getByName(String username) {
 		
 		try(Connection con = dbCon.getDBConnection()){
-			System.out.println("in uDao.getByName");
-			String sql = "select * from users where ers_username = ?";
+			
+			String sql = "select * from ers_users where ers_username = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, username);
 			
@@ -166,9 +166,10 @@ public class UserDaoImpl implements UserDao {
 			
 			return user;
 			
-		}catch (SQLException e) {
+		}catch (Exception e) {
 			
 			LogDriver.log.error(e);
+			e.printStackTrace();
 		}
 		
 		return null;
