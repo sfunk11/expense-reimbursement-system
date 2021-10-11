@@ -41,8 +41,19 @@ public class UserService {
 	}
 	
 	
-	public User changePassword(String username, String password) {
+	public User changePassword(String username, String fullName, String password) {
 		
+		User user = uDao.getByName(username);
+		String[] name = fullName.split(" ");
+		if (name[0].trim().equals(user.getFirstName())) {
+			if(name[1].trim().equals(user.getLastName())) {
+				user.setPassword(password);
+				uDao.update(user);
+				return user;
+			}
+		}else {
+		// logic to alert that the name and user name do not match and go back to login
+		}
 		return null;
 	}
 	

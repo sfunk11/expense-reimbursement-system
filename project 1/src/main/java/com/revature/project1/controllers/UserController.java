@@ -38,4 +38,30 @@ public class UserController {
 		}
 	}
 	
+	
+	public static String changePassword(HttpServletRequest req) {
+		
+		User user = null;
+		if (req.getParameter("newPass").equals(req.getParameter("newPass2"))) {
+		
+			user = uServ.changePassword(req.getParameter("username"), req.getParameter("fullName"), req.getParameter("newPass"));
+		} else {
+			//write logic to alert that passwords do not match, try again
+		}
+		if (req.getMethod().equals("POST")) {
+			
+			if (user == null) {
+				return "wrongcreds.view";
+			}else if (user.getRoleId() == 1){
+				return "html/home.html";
+			}else {
+				return "html/manager.html";
+			}
+			
+		}
+		else {
+			return "html/changePassword.html";
+		}
+	}
+	
 }
