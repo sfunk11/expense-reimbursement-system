@@ -52,4 +52,12 @@ public class UserService {
 		return null;
 	}
 
+	public User getEmployeeById(int id) {
+	
+	return null;
 }
+	
+	
+	
+}
+	

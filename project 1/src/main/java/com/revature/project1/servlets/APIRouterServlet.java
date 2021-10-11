@@ -13,13 +13,13 @@ public class APIRouterServlet extends HttpServlet {
 	
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		req.getRequestDispatcher(APIDispatcher.process(req)).forward(req, res);
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
+		APIDispatcher.process(req, res);
 	}
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		req.getRequestDispatcher(APIDispatcher.process(req)).forward(req, res);
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
+		APIDispatcher.process(req, res);
 	}
 
 	
