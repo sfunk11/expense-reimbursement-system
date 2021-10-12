@@ -14,6 +14,10 @@ public static String process(HttpServletRequest req) {
 			System.out.println("in login.view dispatcher");
 			return UserController.login(req);
 			
+		case "/project1-ers/changeCreds.view":
+			System.out.println("in change password dispatcher");
+			return UserController.changePassword(req);
+			
 		 default:
 			 	System.out.println("in  default");
 			 	return "html/unsuccessfullogin.html";

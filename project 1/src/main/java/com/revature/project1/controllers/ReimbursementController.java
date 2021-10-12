@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,12 +28,21 @@ public class ReimbursementController {
 	
 	public static void getAllForUser(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException  {
 		
-		User user = uServ.getEmployeeById(Integer.parseInt(req.getParameter("employeeId")));
+		User user = new User();
+		HttpSession session = req.getSession();
 		
 		
+		User currentUser = (User)session.getAttribute("currentUser");
+		if (req.getParameter("employeeId")!=null) {
+			user = uServ.getEmployeeById(Integer.parseInt(req.getParameter("employeeId")));
+		}else {
+			user = currentUser;
+		}	
+		
+			
 		List<ReimbursementItem> itemList = rServ.getReimbursementsByUser(user.getUsername());
 	
-		req.getSession().setAttribute("currentEmployee", user);	
+		
 		res.getWriter().write(new ObjectMapper().writeValueAsString(itemList));
 		
 		

@@ -77,7 +77,26 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void update(User t) {
-		// TODO Auto-generated method stub
+	try(Connection con = dbCon.getDBConnection()){
+			
+			String sql = "{? = call update_user(?,?,?,?,?,?,?)}";
+			CallableStatement cs = con.prepareCall(sql);
+			cs.registerOutParameter(1, Types.VARCHAR);
+			 cs.setInt(2, t.getUserId());
+			 cs.setString(3, t.getUsername());
+			 cs.setString(4, t.getPassword());
+			 cs.setString(5,  t.getFirstName());
+			 cs.setString(6,  t.getLastName());
+			 cs.setString(7, t.getEmail());
+			 cs.setInt(8, t.getRoleId());
+			 cs.execute();
+					
+			
+		}catch (Exception e) {
+			
+			LogDriver.log.error(e);
+		}
+		
 
 	}
 
