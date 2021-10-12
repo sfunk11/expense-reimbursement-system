@@ -1,6 +1,7 @@
 package com.revature.project1.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.revature.project1.dao.ExpenseDBConnection;
 import com.revature.project1.dao.UserDaoImpl;
@@ -53,6 +54,8 @@ public class UserController {
 			if (user == null) {
 				return "wrongcreds.view";
 			}else if (user.getRoleId() == 1){
+				HttpSession session = req.getSession();
+				session.setAttribute("currentUser", user);
 				return "html/home.html";
 			}else {
 				return "html/manager.html";
