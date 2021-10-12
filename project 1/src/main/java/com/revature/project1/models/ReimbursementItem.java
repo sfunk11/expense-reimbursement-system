@@ -44,6 +44,16 @@ public class ReimbursementItem {
 		this.reimbStatus = reimbStatus;
 		this.reimbTypeId = reimbTypeId;
 	}
+	
+	
+
+	public ReimbursementItem(double amount, String description, int authorId, int reimbTypeId) {
+		super();
+		this.amount = amount;
+		this.description = description;
+		this.authorId = authorId;
+		this.reimbTypeId = reimbTypeId;
+	}
 
 	public double getAmount() {
 		return amount;

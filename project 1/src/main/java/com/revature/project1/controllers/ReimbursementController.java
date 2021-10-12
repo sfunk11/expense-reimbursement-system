@@ -3,6 +3,7 @@ package com.revature.project1.controllers;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,7 @@ import com.revature.project1.models.ReimbursementItem;
 import com.revature.project1.models.User;
 import com.revature.project1.services.ReimbursementService;
 import com.revature.project1.services.UserService;
+import com.revature.project1.servlets.HtmlDispatcher;
 
 public class ReimbursementController {
 	
@@ -46,7 +48,15 @@ public class ReimbursementController {
 		res.getWriter().write(new ObjectMapper().writeValueAsString(itemList));
 		
 		
+	}
 	
+	public static void submitNewItem(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException, ServletException {
+		User user = (User)req.getSession().getAttribute("currentUser");
+		System.out.println(req.getParameter("amount"));
+		ReimbursementItem newItem = new ReimbursementItem(Double.parseDouble(req.getParameter("amount")), req.getParameter("description"), user.getUserId(), Integer.parseInt(req.getParameter("reimbType")) );
+		List<ReimbursementItem> itemList = rServ.submitItem(newItem, user);
+		
+		req.getRequestDispatcher(HtmlDispatcher.process(req)).forward(req, res);
 	}
 	
 	

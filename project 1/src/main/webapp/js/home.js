@@ -11,17 +11,23 @@ function getStatusList(){
 		method: "GET"
 	}).then(function(res){
 		res = JSON.parse(res);
-		console.log(res)
-		console.log(res.length);
+
 		for (i = 0; i<res.length; i++){
 		newRow = $("<tr>")	
 		itemNumEl = liTemplate.replace("%val",res[i].reimbId);
 		itemStatusEl = liTemplate.replace("%val",res[i].reimbStatus);
+		itemTypeEl = liTemplate.replace("%val",res[i].reimbTypeId);
 		itemDescEl = liTemplate.replace("%val",res[i].description);
 		
 		$("#statusArea").append(newRow);
-		$(newRow).append(itemNumEl,itemStatusEl,itemDescEl);
+		$(newRow).append(itemNumEl,itemStatusEl,itemTypeEl,itemDescEl);
 		}
 	})
 	
+}
+
+function newItemFormSubmit(form){
+	
+	
+	$.ajax()
 }

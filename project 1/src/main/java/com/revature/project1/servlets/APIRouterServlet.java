@@ -19,7 +19,7 @@ public class APIRouterServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
-		APIDispatcher.process(req, res);
+		req.getRequestDispatcher(HtmlDispatcher.process(req)).forward(req, res);
 	}
 
 	
