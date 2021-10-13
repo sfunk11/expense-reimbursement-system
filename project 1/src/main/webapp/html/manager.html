@@ -19,14 +19,6 @@
 		    <div class="container-fluid">
 		       
 		        <div class="navbar-collapse collapse" id="collapseNavbar">
-		        <form class="form-inline">
-			 <div class="form-group">
-			    <label class="text-light" for="employeeId">Show Expense Items For:</label>
-			    <select class="form-control" id="employeeId">
-					<option value = "all"> All Employees </option>
-			    </select>
-			  </div>
-		</form>
 		            <ul class="navbar-nav ms-auto">
 		            	 <li class="nav-item">
 					        <a class="nav-link" href="/project1-ers/html/home.html">Go To Employee View</a>
@@ -39,6 +31,17 @@
 		    </div>
 		</nav>
 		<div class = "container mt-3">
+		<div class="row text-center">
+		    <form class="form-inline text-center">
+			 <div class="form-group text-center mx-6 mb-2">
+			    <label class="font-weight-bold" for="employeeId">Show Expense Items For:</label>
+			    <select class="form-control" id="employeeId">
+					<option value = "all"> All Employees </option>
+			    </select>
+			     </div>
+			    <button id="employeeSubmit" type = "submit" class="btn btn-dark mb-2">Get List</button>
+		</form>
+		</div>
 			<h4> Existing Expense Items</h4>
 			<table class = "table" >
 			<thead>
