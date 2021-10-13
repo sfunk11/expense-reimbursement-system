@@ -52,3 +52,12 @@ function newItemFormSubmit(){
 	})
 	
 }
+
+function logOut(){
+	$.ajax({
+		url: "/project1-ers/logout.view",
+		method: "GET"
+	}).then((res) => {
+		console.log(res);
+	})
+}

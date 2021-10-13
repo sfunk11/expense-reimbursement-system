@@ -1,6 +1,7 @@
 package com.revature.project1.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,7 +18,6 @@ import com.revature.project1.models.ReimbursementItem;
 import com.revature.project1.models.User;
 import com.revature.project1.services.ReimbursementService;
 import com.revature.project1.services.UserService;
-import com.revature.project1.servlets.HtmlDispatcher;
 
 public class ReimbursementController {
 	
@@ -32,9 +32,11 @@ public class ReimbursementController {
 		
 		User user = new User();
 		HttpSession session = req.getSession();
+		List<ReimbursementItem> itemList = new ArrayList<>();
 		
 		
 		User currentUser = (User)session.getAttribute("currentUser");
+		if (currentUser != null) {
 		if (req.getParameter("employeeId")!=null) {
 			user = uServ.getEmployeeById(Integer.parseInt(req.getParameter("employeeId")));
 		}else {
@@ -42,8 +44,8 @@ public class ReimbursementController {
 		}	
 		
 			
-		List<ReimbursementItem> itemList = rServ.getReimbursementsByUser(user.getUsername());
-	
+		itemList = rServ.getReimbursementsByUser(user.getUsername());
+		}
 		
 		res.getWriter().write(new ObjectMapper().writeValueAsString(itemList));
 		

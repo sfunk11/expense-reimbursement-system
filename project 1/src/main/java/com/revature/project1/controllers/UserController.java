@@ -65,6 +65,15 @@ public class UserController {
 		else {
 			return "html/changePassword.html";
 		}
+	}	
+		
+		public static String logOut(HttpServletRequest req) {
+			User user = null;
+			req.getSession().setAttribute("currentUser", user);
+			return "html/index.html";
+		}
+		
+		
 	}
 	
-}
+

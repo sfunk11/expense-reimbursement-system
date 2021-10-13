@@ -18,6 +18,10 @@ public static String process(HttpServletRequest req) {
 			System.out.println("in change password dispatcher");
 			return UserController.changePassword(req);
 			
+		case "/project1-ers/logout.view":
+			System.out.println("in logout dispatcher");
+			return UserController.logOut(req);
+			
 		 default:
 			 	System.out.println("in  default html");
 			 	return "html/unsuccessfullogin.html";
