@@ -4,7 +4,7 @@ $(document).ready(function(){
 })
 
 tdTemplate = "<td class = 'list-group-item>'> %val </td>";
-buttonTemplate = "<button"
+buttonTemplate = "<button class='btn btn-sm-success' id=%action%N>%action</button>";
  
  function getEmployees(){
 	
@@ -22,7 +22,7 @@ buttonTemplate = "<button"
 	})
 }
 
-function getStatusList(){
+function getManagerStatusList(){
 	
 	
 	$.ajax({
@@ -40,9 +40,11 @@ function getStatusList(){
 			itemStatusEl = tdTemplate.replace("%val",res[i].status);
 			itemTypeEl = tdTemplate.replace("%val",res[i].reimbCategory);
 			itemDescEl = tdTemplate.replace("%val",res[i].description);
+			approveEl = buttonTemplate.replace("%action","Approve").replace("%N",res[i].reimbId);
+			rejectEl = buttonTemplate.replace("%action","Reject").replace("%N",res[i].reimbId);
 			
-			$("#statusArea").append(newRow);
-			$(newRow).append(itemNumEl,employeeEl,AmountEl,itemStatusEl,itemTypeEl,itemDescEl);
+			$("#managerStatusArea").append(newRow);
+			$(newRow).append(itemNumEl,employeeEl,AmountEl,itemStatusEl,itemTypeEl,itemDescEl, approveEl, rejectEl);
 		}
 	})
 	
