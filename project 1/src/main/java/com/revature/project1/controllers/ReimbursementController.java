@@ -56,7 +56,6 @@ public class ReimbursementController {
 		ReimbursementItem newItem = new ReimbursementItem(Double.parseDouble(req.getParameter("amount")), req.getParameter("description"), user.getUserId(), Integer.parseInt(req.getParameter("reimbType")) );
 		List<ReimbursementItem> itemList = rServ.submitItem(newItem, user);
 		
-		req.getRequestDispatcher(HtmlDispatcher.process(req)).forward(req, res);
 	}
 	
 	
