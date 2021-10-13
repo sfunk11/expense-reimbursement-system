@@ -36,13 +36,13 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		List<ReimbursementItem> reimbList = new ArrayList<>();
 		try(Connection con = dbCon.getDBConnection()){
 			
-			String sql = "select * from ers_reimbursement";
+			String sql = "select * from ers_reimbursement r inner join ers_reimbursement_status ers on r.reimb_status_id = ers.reimb_status_id inner join ers_reimbursement_type ert on r.reimb_type_id = ert.reimb_type_id inner join ers_users u on r.reimb_author=u.ers_users_id ";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
 				reimbList.add(new ReimbursementItem(rs.getInt(1), rs.getDouble(2), rs.getTimestamp(3), rs.getTimestamp(4),
-						rs.getString(5), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10)));
+						rs.getString(5), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getString(12), rs.getString(14)));
 			}
 			
 			
@@ -58,14 +58,14 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public ReimbursementItem getById(int id) {
 		try(Connection con = dbCon.getDBConnection()){
 			
-			String sql = "select * from ers_reimbursement where reimb_id = ?";
+			String sql = "select * from ers_reimbursement r inner join ers_reimbursement_status ers on r.reimb_status_id = ers.reimb_status_id inner join ers_reimbursement_type ert on r.reimb_type_id = ert.reimb_type_id where r.reimb_id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			ReimbursementItem item = new ReimbursementItem();
 			
 			while (rs.next()) {
 				item = new ReimbursementItem(rs.getInt(1), rs.getDouble(2), rs.getTimestamp(3), rs.getTimestamp(4),
-						rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9));
+						rs.getString(5), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getString(12), rs.getString(14));
 			}
 			
 			return item;
@@ -115,21 +115,20 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		List<ReimbursementItem> reimbList = new ArrayList<>();
 		try(Connection con = dbCon.getDBConnection()){
 			
-			String sql = "select * from ers_reimbursement where reimb_status_id =?";
+			String sql = "select * from ers_reimbursement r inner join ers_reimbursement_status ers on r.reimb_status_id = ers.reimb_status_id inner join ers_reimbursement_type ert on r.reimb_type_id = ert.reimb_type_id where r.reimb_status_id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1,status);
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
 				reimbList.add(new ReimbursementItem(rs.getInt(1), rs.getDouble(2), rs.getTimestamp(3), rs.getTimestamp(4),
-						rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9)));
+						rs.getString(5), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getString(12), rs.getString(14)));
 			}
 			
 			
 		}catch (Exception e) {
 			LogDriver.log.error(e);
 		}
-		
 		return reimbList;
 	}
 	
@@ -140,14 +139,14 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		List<ReimbursementItem> reimbList = new ArrayList<>();
 		try(Connection con = dbCon.getDBConnection()){
 			
-			String sql = "select * from ers_reimbursement r inner join ers_users u on r.reimb_author=u.ers_users_id where u.ers_username = ?";
+			String sql = "select * from ers_reimbursement r inner join ers_reimbursement_status ers on r.reimb_status_id = ers.reimb_status_id inner join ers_reimbursement_type ert on r.reimb_type_id = ert.reimb_type_id inner join ers_users u on r.reimb_author=u.ers_users_id where u.ers_username =  ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1,username);
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
 				reimbList.add(new ReimbursementItem(rs.getInt(1), rs.getDouble(2), rs.getTimestamp(3), rs.getTimestamp(4),
-						rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9)));
+						rs.getString(5), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getString(12), rs.getString(14)));
 			}
 			
 			
