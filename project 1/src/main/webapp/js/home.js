@@ -35,19 +35,19 @@ function newItemFormSubmit(){
 	itemData = {
 		amount: $("#amount").val(),
 		description: $("#description").val(),
-		reimbType: $("#reimbType").val()
+		reimbType: $("#reimbType").find("option:selected").val()
 	}
-	
+	console.log(itemData);
 	$.ajax({
-		url:  "/project1-ers/newItem.api",
-		method: "POST",
+	url:  "/project1-ers/newItem.api",
+	method: "POST",
 		data: itemData
 	})
 		.then((res) =>{
 			
-			alert("Item added Successfully");
+		alert("Item added Successfully");
 			$("#statusArea").empty();
-			getStatusList();
+		getStatusList();
 		
 	})
 	

@@ -122,14 +122,14 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			
 			while (rs.next()) {
 				reimbList.add(new ReimbursementItem(rs.getInt(1), rs.getDouble(2), rs.getTimestamp(3), rs.getTimestamp(4),
-						rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9)));
+						rs.getString(5), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10)));
 			}
 			
 			
 		}catch (Exception e) {
 			LogDriver.log.error(e);
 		}
-		
+		System.out.println(reimbList.toString());
 		return reimbList;
 	}
 	
@@ -147,7 +147,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			
 			while (rs.next()) {
 				reimbList.add(new ReimbursementItem(rs.getInt(1), rs.getDouble(2), rs.getTimestamp(3), rs.getTimestamp(4),
-						rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9)));
+						rs.getString(5), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10)));
 			}
 			
 			

@@ -32,7 +32,7 @@ public static void process(HttpServletRequest req, HttpServletResponse res) thro
 		
 			
 		 default:
-			 	System.out.println("in  default");
+			 	System.out.println("in  default api");
 			 	res.getWriter().write(new ObjectMapper().writeValueAsString(new ArrayList<ReimbursementItem>()));
 		
 		}
