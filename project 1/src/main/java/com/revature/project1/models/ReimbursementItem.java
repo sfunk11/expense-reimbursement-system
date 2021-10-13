@@ -14,10 +14,33 @@ public class ReimbursementItem {
 	private int resolverId;
 	private int reimbStatus;
 	private int reimbTypeId;
+	private String status;
+	private String reimbCategory;
 	
 	public ReimbursementItem() {
 		
 	}
+
+	
+	
+	public ReimbursementItem(int reimbId, double amount, Timestamp submittedAt, Timestamp resolvedAt,
+			String description, int authorId, int resolverId, int reimbStatus, int reimbTypeId, String status,
+			String reimbCategory) {
+		super();
+		this.reimbId = reimbId;
+		this.amount = amount;
+		this.submittedAt = submittedAt;
+		this.resolvedAt = resolvedAt;
+		this.description = description;
+		this.authorId = authorId;
+		this.resolverId = resolverId;
+		this.reimbStatus = reimbStatus;
+		this.reimbTypeId = reimbTypeId;
+		this.status = status;
+		this.reimbCategory = reimbCategory;
+	}
+
+
 
 	public ReimbursementItem(int reimbId, double amount, Timestamp submittedAt, Timestamp resolvedAt, String description,
 			int authorId, int resolverId, int reimbStatus, int reimbTypeId) {
@@ -108,10 +131,25 @@ public class ReimbursementItem {
 		this.reimbTypeId = reimbTypeId;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getReimbCategory() {
+		return reimbCategory;
+	}
+	
+	public void setReimbCategory(String reimbCategory) {
+		this.reimbCategory = reimbCategory;
+	}
+
 	public int getReimbId() {
 		return reimbId;
 	}
-
 	public Timestamp getSubmittedAt() {
 		return submittedAt;
 	}

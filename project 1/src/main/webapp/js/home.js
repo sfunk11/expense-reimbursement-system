@@ -19,8 +19,8 @@ function getStatusList(){
 			newRow = $("<tr>")	
 			itemNumEl = tdTemplate.replace("%val",res[i].reimbId);
 			AmountEl = tdTemplate.replace("%val", "$" + res[i].amount);
-			itemStatusEl = tdTemplate.replace("%val",res[i].reimbStatus);
-			itemTypeEl = tdTemplate.replace("%val",res[i].reimbTypeId);
+			itemStatusEl = tdTemplate.replace("%val",res[i].status);
+			itemTypeEl = tdTemplate.replace("%val",res[i].reimbCategory);
 			itemDescEl = tdTemplate.replace("%val",res[i].description);
 			
 			$("#statusArea").append(newRow);
