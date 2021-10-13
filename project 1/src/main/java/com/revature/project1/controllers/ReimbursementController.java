@@ -28,6 +28,15 @@ public class ReimbursementController {
 	static UserService uServ = new UserService(udao);
 	
 	
+	public static void getAllItems(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
+		List<ReimbursementItem> itemList = new ArrayList<>();
+		
+		itemList = rServ.getAllReimb();
+		res.getWriter().write(new ObjectMapper().writeValueAsString(itemList));
+		
+	}
+	
+	
 	public static void getAllForUser(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException  {
 		
 		User user = new User();
@@ -37,14 +46,13 @@ public class ReimbursementController {
 		
 		User currentUser = (User)session.getAttribute("currentUser");
 		if (currentUser != null) {
-		if (req.getParameter("employeeId")!=null) {
-			user = uServ.getEmployeeById(Integer.parseInt(req.getParameter("employeeId")));
-		}else {
-			user = currentUser;
-		}	
-		
+			if (req.getParameter("employeeId")!=null) {
+				user = uServ.getEmployeeById(Integer.parseInt(req.getParameter("employeeId")));
+			}else {
+				user = currentUser;
+			}	
 			
-		itemList = rServ.getReimbursementsByUser(user.getUsername());
+			itemList = rServ.getReimbursementsByUser(user.getUsername());
 		}
 		
 		res.getWriter().write(new ObjectMapper().writeValueAsString(itemList));

@@ -13,7 +13,7 @@ function getStatusList(){
 		method: "GET"
 		}).then(function(res){
 			res = JSON.parse(res);
-			console.log(res);
+	
 	
 			for (i = 0; i<res.length; i++){
 			newRow = $("<tr>")	

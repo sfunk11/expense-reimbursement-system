@@ -21,6 +21,12 @@ public class ReimbursementService {
 		this.rdao = rdao;
 	}
 	
+	public List<ReimbursementItem> getAllReimb(){
+		List<ReimbursementItem> itemList = rdao.getAll();
+		
+		return itemList;
+	}
+	
 	
 	public List<ReimbursementItem> getReimbursementsByUser(String username){
 		

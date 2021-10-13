@@ -42,7 +42,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			
 			while (rs.next()) {
 				reimbList.add(new ReimbursementItem(rs.getInt(1), rs.getDouble(2), rs.getTimestamp(3), rs.getTimestamp(4),
-						rs.getString(5), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getString(12), rs.getString(14)));
+						rs.getString(5), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getString(12), rs.getString(14), rs.getString(16)));
 			}
 			
 			

@@ -1,5 +1,7 @@
 package com.revature.project1.services;
 
+import java.util.List;
+
 import com.revature.project1.dao.UserDaoImpl;
 import com.revature.project1.main.LogDriver;
 import com.revature.project1.models.User;
@@ -67,7 +69,13 @@ public class UserService {
 		
 	return null;
 }
+	public List<User> getAllEmployees() {
+		List<User> employeeList = uDao.getAll();
+		
+		
+		return employeeList;
 	
+	}
 	
 	
 }

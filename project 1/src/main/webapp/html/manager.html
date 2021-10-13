@@ -13,14 +13,23 @@
 			<h1 class="text-center">Welcome to Samco </h1>
 			<hr>
 			<h2 class="text-center">Employee Expense Reimbursement System </h2>
+			<h4 class="text-center"> Finance Manager View</h4>
 		 </div>
 		 <nav class="navbar navbar-expand-md navbar-dark mb-2 bg-dark fixed">
 		    <div class="container-fluid">
 		       
 		        <div class="navbar-collapse collapse" id="collapseNavbar">
+		        <form class="form-inline">
+			 <div class="form-group">
+			    <label class="text-light" for="employeeId">Show Expense Items For:</label>
+			    <select class="form-control" id="employeeId">
+					<option value = "all"> All Employees </option>
+			    </select>
+			  </div>
+		</form>
 		            <ul class="navbar-nav ms-auto">
 		            	 <li class="nav-item">
-					        <a class="nav-link" href="/project1-ers/html/home.html">Go To Employee Page</a>
+					        <a class="nav-link" href="/project1-ers/html/home.html">Go To Employee View</a>
 					      </li> 
 		            </ul>
 		             <form class="form-inline" method="get" action="/project1-ers/logout.view">
@@ -29,11 +38,30 @@
 		        </div>
 		    </div>
 		</nav>
+		<div class = "container mt-3">
+			<h4> Existing Expense Items</h4>
+			<table class = "table" >
+			<thead>
+				<tr>
+					<th scope ="col"> Item Number </th>
+					<th scope ="col"> Amount </th>
+					<th scope ="col"> Status </th>
+					<th scope = "col"> Category </th>
+					<th scope ="col"> Description </th>
+				</tr>
+			</thead>
+			<tbody id = "managerStatusArea">
+			</tbody>		
+			</table>
+		</div>
+
 </div>
+
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script src="./js/home.js"></script>
+<script src="./js/manager.js"></script>
 </body>
 </html>
