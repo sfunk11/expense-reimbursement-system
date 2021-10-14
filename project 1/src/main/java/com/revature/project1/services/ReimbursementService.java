@@ -25,7 +25,7 @@ public class ReimbursementService {
 		System.out.println("in rServ getAll");
 		
 		List<ReimbursementItem> itemList = rdao.getAll();
-		System.out.println(itemList);
+		
 		return itemList;
 	}
 	

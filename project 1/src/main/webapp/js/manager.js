@@ -5,7 +5,7 @@ getEmployees();
 
 
 tdTemplate = "<td class = 'list-group-item>'> %val </td>";
-buttonTemplate = "<button class='btn btn-sm btn-outline-dark text-capitalize' id=''%a%N'>%action</button>";
+buttonTemplate = "<button class='btn btn-sm btn-outline-dark text-capitalize' id='%a%N'>%action</button>";
  
  function getEmployees(){
 	
@@ -37,12 +37,14 @@ function getManagerStatusList(){
 			for (i = 0; i<res.length; i++){
 			newRow = $("<tr>")	
 			itemNumEl = tdTemplate.replace("%val",res[i].reimbId);
+			$(itemNumEl).setAttribute("id", res[i].reimbId);
 			employeeEl = tdTemplate.replace("%val",res[i].authorUsername);
 			AmountEl = tdTemplate.replace("%val", "$" + res[i].amount);
 			itemStatusEl = tdTemplate.replace("%val",res[i].status);
 			itemTypeEl = tdTemplate.replace("%val",res[i].reimbCategory);
 			itemDescEl = tdTemplate.replace("%val",res[i].description);
 			approveEl = buttonTemplate.replace("%a", "apr").replace("%action","approve").replace("%N",res[i].reimbId);
+			$(ApproveEl).setAttribute("onClick", "approveItem()");
 			rejectEl = buttonTemplate.replace("%a", "deny").replace("%action","reject").replace("%N",res[i].reimbId);
 			
 			$("#managerStatusArea").append(newRow);
@@ -61,5 +63,12 @@ function logOut(){
 	}).then((res) => {
 		console.log(res);
 	})
+}
+
+function approveItem(){
+	event.preventDefault;
+	
+	itemId = $(this).getAttribute("id");
+	console.log(itemId);
 }
  
