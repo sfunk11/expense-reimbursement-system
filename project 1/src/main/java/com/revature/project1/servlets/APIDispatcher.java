@@ -24,8 +24,8 @@ public static void process(HttpServletRequest req, HttpServletResponse res) thro
 			ReimbursementController.getAllForUser(req, res);
 			break;
 		
-		case "/project1-ers/getALLItems.api":
-			System.out.println("in get ALL dispatcher");
+		case "/project1-ers/getManagerItems.api":
+			System.out.println("in get manager items dispatcher");
 			ReimbursementController.getAllItems(req, res);
 			break;
 			

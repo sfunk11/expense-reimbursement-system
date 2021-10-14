@@ -23,14 +23,14 @@ public class UserController {
 	static UserService uServ = new UserService(uDao);
 	
 	public static String login(HttpServletRequest req) {
+		User user = new User();
 		
-		
-		User user = uServ.verifyUserCreds(req.getParameter("username"), req.getParameter("password"));
-	
-		if(!req.getMethod().equals("POST")) {
-			return "html/unsuccessfullogin.html";
+		if (req.getParameter("username") !=null) {
+		user = uServ.verifyUserCreds(req.getParameter("username"), req.getParameter("password"));
 		}
-		
+		else {
+		user = (User)req.getSession().getAttribute("currentUser");
+		}
 		
 		if (user == null) {
 			return "wrongcreds.view";
@@ -41,7 +41,7 @@ public class UserController {
 				return "html/home.html";
 			} else {
 			
-			return "html/manager.html";
+			return "manager.view";
 		}
 		}
 	}

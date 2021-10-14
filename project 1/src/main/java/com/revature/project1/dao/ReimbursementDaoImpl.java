@@ -33,6 +33,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 	@Override
 	public List<ReimbursementItem> getAll() {
+		
+		System.out.println("in rdao getALl");
 		List<ReimbursementItem> reimbList = new ArrayList<>();
 		try(Connection con = dbCon.getDBConnection()){
 			
@@ -49,7 +51,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		}catch (Exception e) {
 			LogDriver.log.error(e);
 		}
-		
+	
 		return reimbList;
 	}
 

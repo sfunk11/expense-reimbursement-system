@@ -14,7 +14,7 @@ buttonTemplate = "<button class='btn btn-sm-success' id=%action%N>%action</butto
 	}).then(res => {
 		res = JSON.parse(res);
 		console.log(res);
-		optionTemplate = "<option value = %id>%fname %lname</option>";
+		optionTemplate = "<option value = %id class= 'text-capitalize'>%fname %lname</option>";
 		for(i=0; i<res.length; i++){
 			optionEl = optionTemplate.replace("%id",res[i].userId).replace("%fname", res[i].firstName).replace("%lname", res[i].lastName);
 			$("#employeeId").append(optionEl);
@@ -26,11 +26,15 @@ function getManagerStatusList(){
 	
 	
 	$.ajax({
-		url: "/project1-ers/getALLItems.api",
-		method: "GET"
+		url: "/project1-ers/getManagerItems.api",
+		method: "GET",
+		data: {
+			employeeId: $("#employeeId").val()
+		}
 		}).then(function(res){
+			console.log(res);
 			res = JSON.parse(res);
-	
+			console.log(res);
 	
 			for (i = 0; i<res.length; i++){
 			newRow = $("<tr>")	
@@ -40,13 +44,21 @@ function getManagerStatusList(){
 			itemStatusEl = tdTemplate.replace("%val",res[i].status);
 			itemTypeEl = tdTemplate.replace("%val",res[i].reimbCategory);
 			itemDescEl = tdTemplate.replace("%val",res[i].description);
-			approveEl = buttonTemplate.replace("%action","Approve").replace("%N",res[i].reimbId);
-			rejectEl = buttonTemplate.replace("%action","Reject").replace("%N",res[i].reimbId);
+			approveEl = buttonTemplate.replace("%action","approve").replace("%N",res[i].reimbId);
+			rejectEl = buttonTemplate.replace("%action","reject").replace("%N",res[i].reimbId);
 			
 			$("#managerStatusArea").append(newRow);
 			$(newRow).append(itemNumEl,employeeEl,AmountEl,itemStatusEl,itemTypeEl,itemDescEl, approveEl, rejectEl);
 		}
 	})
+}	
 	
+function logOut(){
+	$.ajax({
+		url: "/project1-ers/logout.view",
+		method: "GET"
+	}).then((res) => {
+		console.log(res);
+	})
 }
  

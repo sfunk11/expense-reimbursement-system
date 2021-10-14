@@ -22,8 +22,10 @@ public class ReimbursementService {
 	}
 	
 	public List<ReimbursementItem> getAllReimb(){
-		List<ReimbursementItem> itemList = rdao.getAll();
+		System.out.println("in rServ getAll");
 		
+		List<ReimbursementItem> itemList = rdao.getAll();
+		System.out.println(itemList);
 		return itemList;
 	}
 	
