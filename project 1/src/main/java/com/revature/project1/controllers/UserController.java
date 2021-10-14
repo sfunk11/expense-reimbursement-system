@@ -41,7 +41,7 @@ public class UserController {
 				return "html/home.html";
 			} else {
 			
-			return "manager.view";
+			return "html/manager.html";
 		}
 		}
 	}

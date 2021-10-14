@@ -40,7 +40,9 @@ public class ReimbursementController {
 		System.out.println(itemList);
 		String response = OBJECT_MAPPER.writeValueAsString(itemList);
 		System.out.println(response);
+		res.setContentType("application/json");
 		res.getWriter().write(response); //Set breakpoint here to look at string contents before response is written
+		
 		}else {
 			getAllForUser(req, res);
 		}
@@ -64,7 +66,7 @@ public class ReimbursementController {
 			
 			itemList = rServ.getReimbursementsByUser(user.getUsername());
 		}
-		
+		res.setContentType("application/json");
 		res.getWriter().write(OBJECT_MAPPER.writeValueAsString(itemList));
 		
 		

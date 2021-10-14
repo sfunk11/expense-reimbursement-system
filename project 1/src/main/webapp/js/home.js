@@ -12,9 +12,7 @@ function getStatusList(){
 		url: "/project1-ers/getAllItems.api",
 		method: "GET"
 		}).then(function(res){
-			res = JSON.parse(res);
-	
-	
+			
 			for (i = 0; i<res.length; i++){
 			newRow = $("<tr>")	
 			itemNumEl = tdTemplate.replace("%val",res[i].reimbId);
