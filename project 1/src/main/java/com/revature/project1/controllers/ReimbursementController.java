@@ -74,10 +74,23 @@ public class ReimbursementController {
 	
 	public static void submitNewItem(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException, ServletException {
 		User user = (User)req.getSession().getAttribute("currentUser");
-		System.out.println(req.getParameter("amount"));
 		ReimbursementItem newItem = new ReimbursementItem(Double.parseDouble(req.getParameter("amount")), req.getParameter("description"), user.getUserId(), Integer.parseInt(req.getParameter("reimbType")) );
 		List<ReimbursementItem> itemList = rServ.submitItem(newItem, user);
 		
+	}
+	
+	public static void changeItemStatus(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException, ServletException {
+		
+		
+		HttpSession session = req.getSession();
+		User currentUser = (User)session.getAttribute("currentUser");
+		System.out.println(currentUser);
+		ReimbursementItem item = rServ.getReimbById(Integer.parseInt(req.getParameter("reimbId")));
+		System.out.println(item);
+		item.setResolverId(currentUser.getUserId());
+		Boolean isApproved = Boolean.parseBoolean(req.getParameter("isApproved"));
+		System.out.println(isApproved);
+		rServ.changeStatus(item, isApproved);
 	}
 	
 	

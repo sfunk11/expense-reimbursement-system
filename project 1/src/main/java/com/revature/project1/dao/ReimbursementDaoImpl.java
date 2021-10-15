@@ -62,6 +62,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			
 			String sql = "select * from ers_reimbursement r inner join ers_reimbursement_status ers on r.reimb_status_id = ers.reimb_status_id inner join ers_reimbursement_type ert on r.reimb_type_id = ert.reimb_type_id where r.reimb_id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			ReimbursementItem item = new ReimbursementItem();
 			
@@ -166,6 +167,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public void approveItem(ReimbursementItem item) {
 		
 		try(Connection con = dbCon.getDBConnection()){
+			
 			
 			String sql = "{? = call approve_reimb(?,?}";
 			CallableStatement cs = con.prepareCall(sql);

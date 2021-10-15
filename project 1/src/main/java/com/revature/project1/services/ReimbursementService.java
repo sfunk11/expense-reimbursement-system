@@ -59,6 +59,21 @@ public class ReimbursementService {
 		return newList;
 	}
 	
+	public ReimbursementItem getReimbById(int id) {
+		
+		ReimbursementItem item = rdao.getById(id);
+		return item;
+	}
 	
+	public void changeStatus(ReimbursementItem item, boolean isApproved) {
+		
+		
+		if(isApproved) {
+			rdao.approveItem(item);
+		}
+		else {
+			rdao.rejectItem(item);
+		}
+	}
 	
 }

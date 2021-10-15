@@ -4,8 +4,8 @@ getEmployees();
 })
 
 
-tdTemplate = "<td class = 'list-group-item>'> %val </td>";
-buttonTemplate = "<button class='btn btn-sm btn-outline-dark text-capitalize' id='%a%N'>%action</button>";
+tdTemplate = "<td class = 'list-group-item>'>%val</td>";
+buttonTemplate = "<button class='btn btn-sm btn-outline-dark text-capitalize' onClick='%click' id='%a%N'>%action</button>";
  
  function getEmployees(){
 	
@@ -31,21 +31,19 @@ function getManagerStatusList(){
 			employeeId: $("#employeeId").val()
 		}
 		}).then(res =>{
-		
+		console.log(res);
 
 		$("#managerStatusArea").empty();
 			for (i = 0; i<res.length; i++){
 			newRow = $("<tr>")	
-			itemNumEl = tdTemplate.replace("%val",res[i].reimbId);
-			$(itemNumEl).setAttribute("id", res[i].reimbId);
+			itemNumEl = tdTemplate.replace("%val",res[i].reimbId).replace("%N", res[i].reimbId);
 			employeeEl = tdTemplate.replace("%val",res[i].authorUsername);
 			AmountEl = tdTemplate.replace("%val", "$" + res[i].amount);
 			itemStatusEl = tdTemplate.replace("%val",res[i].status);
 			itemTypeEl = tdTemplate.replace("%val",res[i].reimbCategory);
 			itemDescEl = tdTemplate.replace("%val",res[i].description);
-			approveEl = buttonTemplate.replace("%a", "apr").replace("%action","approve").replace("%N",res[i].reimbId);
-			$(ApproveEl).setAttribute("onClick", "approveItem()");
-			rejectEl = buttonTemplate.replace("%a", "deny").replace("%action","reject").replace("%N",res[i].reimbId);
+			approveEl = buttonTemplate.replace("%click", "approveItem(this)").replace("%a", "apr").replace("%action","approve").replace("%N",res[i].reimbId);
+			rejectEl = buttonTemplate.replace("%click", "rejectItem(this)").replace("%a", "deny").replace("%action","reject").replace("%N",res[i].reimbId);
 			
 			$("#managerStatusArea").append(newRow);
 			$(newRow).append(itemNumEl,employeeEl,AmountEl,itemStatusEl,itemTypeEl,itemDescEl, approveEl, rejectEl);
@@ -65,10 +63,37 @@ function logOut(){
 	})
 }
 
-function approveItem(){
-	event.preventDefault;
+function approveItem(elem){
+	event.preventDefault();
+	itemId = $(elem).closest("tr").find("td:first-child").text();
 	
-	itemId = $(this).getAttribute("id");
 	console.log(itemId);
+	$.ajax({
+		url:"/project1-ers/changeItem.api",
+		method: "POST",
+		data: {
+			reimbId: itemId,
+			isApproved: true
+		}
+	}).then(res => {
+		getManagerStatusList();
+	})
+}
+
+function rejectItem(elem){
+	event.preventDefault();
+	itemId = $(elem).closest("tr").find("td:first-child").text();
+	
+	console.log(itemId);
+	$.ajax({
+		url:"/project1-ers/changeItem.api",
+		method: "POST",
+		data: {
+			reimbId: itemId,
+			isApproved: false
+		}
+	}).then(res => {
+		getManagerStatusList();
+	})
 }
  

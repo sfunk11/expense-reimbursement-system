@@ -39,6 +39,11 @@ public static void process(HttpServletRequest req, HttpServletResponse res) thro
 			UserController.getEmployeeList(req, res);
 			break;
 			
+		case "/project1-ers/changeItem.api":
+			System.out.println("in change item dispatcher");
+			ReimbursementController.changeItemStatus(req, res);
+			break;
+			
 			
 		 default:
 			 	System.out.println("in  default api");
