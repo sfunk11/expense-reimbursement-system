@@ -33,6 +33,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 	@Override
 	public List<ReimbursementItem> getAll() {
+		
+		System.out.println("in rdao getALl");
 		List<ReimbursementItem> reimbList = new ArrayList<>();
 		try(Connection con = dbCon.getDBConnection()){
 			
@@ -42,14 +44,14 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			
 			while (rs.next()) {
 				reimbList.add(new ReimbursementItem(rs.getInt(1), rs.getDouble(2), rs.getTimestamp(3), rs.getTimestamp(4),
-						rs.getString(5), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getString(12), rs.getString(14)));
+						rs.getString(5), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getString(12), rs.getString(14), rs.getString(16)));
 			}
 			
 			
 		}catch (Exception e) {
 			LogDriver.log.error(e);
 		}
-		
+	
 		return reimbList;
 	}
 
@@ -60,6 +62,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			
 			String sql = "select * from ers_reimbursement r inner join ers_reimbursement_status ers on r.reimb_status_id = ers.reimb_status_id inner join ers_reimbursement_type ert on r.reimb_type_id = ert.reimb_type_id where r.reimb_id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			ReimbursementItem item = new ReimbursementItem();
 			
@@ -115,7 +118,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		List<ReimbursementItem> reimbList = new ArrayList<>();
 		try(Connection con = dbCon.getDBConnection()){
 			
-			String sql = "select * from ers_reimbursement r inner join ers_reimbursement_status ers on r.reimb_status_id = ers.reimb_status_id inner join ers_reimbursement_type ert on r.reimb_type_id = ert.reimb_type_id where r.reimb_status_id = ?";
+			String sql = "select * from ers_reimbursement r inner join ers_reimbursement_status ers on r.reimb_status_id = ers.reimb_status_id inner join ers_reimbursement_type ert on r.reimb_type_id = ert.reimb_type_id inner join ers_users u on r.reimb_author=u.ers_users_id where r.reimb_status_id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1,status);
 			ResultSet rs = ps.executeQuery();
@@ -165,7 +168,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		
 		try(Connection con = dbCon.getDBConnection()){
 			
-			String sql = "{? = call approve_reimb(?,?}";
+			
+			String sql = "{? = call approve_reimb(?,?)}";
 			CallableStatement cs = con.prepareCall(sql);
 			cs.registerOutParameter(1, Types.VARCHAR);
 			cs.setInt(2,item.getReimbId());
@@ -186,7 +190,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public void rejectItem(ReimbursementItem item) {
 		try(Connection con = dbCon.getDBConnection()){
 			
-			String sql = "{? = call reject_reimb(?,?}";
+			String sql = "{? = call reject_reimb(?,?)}";
 			CallableStatement cs = con.prepareCall(sql);
 			cs.registerOutParameter(1, Types.VARCHAR);
 			cs.setInt(2,item.getReimbId());

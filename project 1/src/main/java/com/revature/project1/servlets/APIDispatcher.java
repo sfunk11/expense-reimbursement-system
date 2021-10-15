@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.project1.controllers.ReimbursementController;
+import com.revature.project1.controllers.UserController;
 import com.revature.project1.models.ReimbursementItem;
 
 public class APIDispatcher {
@@ -22,14 +23,27 @@ public static void process(HttpServletRequest req, HttpServletResponse res) thro
 			System.out.println("in getAll.api dispatcher");
 			ReimbursementController.getAllForUser(req, res);
 			break;
-			
+		
+		case "/project1-ers/getManagerItems.api":
+			System.out.println("in get manager items dispatcher");
+			ReimbursementController.getAllItems(req, res);
+			break;
 			
 		case "/project1-ers/newItem.api":
 			System.out.println("in newItem.api dispatcher");
 			ReimbursementController.submitNewItem(req, res);
 			break;
 			
-		
+		case "/project1-ers/getEmployees.api":
+			System.out.println("in get employees dispatcher");
+			UserController.getEmployeeList(req, res);
+			break;
+			
+		case "/project1-ers/changeItem.api":
+			System.out.println("in change item dispatcher");
+			ReimbursementController.changeItemStatus(req, res);
+			break;
+			
 			
 		 default:
 			 	System.out.println("in  default api");

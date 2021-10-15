@@ -16,13 +16,33 @@ public class ReimbursementItem {
 	private int reimbTypeId;
 	private String status;
 	private String reimbCategory;
+	private String authorUsername;
 	
 	public ReimbursementItem() {
 		
 	}
 
 	
-	
+	public ReimbursementItem(int reimbId, double amount, Timestamp submittedAt, Timestamp resolvedAt,
+			String description, int authorId, int resolverId, int reimbStatus, int reimbTypeId, String status,
+			String reimbCategory, String authorUsername) {
+		super();
+		this.reimbId = reimbId;
+		this.amount = amount;
+		this.submittedAt = submittedAt;
+		this.resolvedAt = resolvedAt;
+		this.description = description;
+		this.authorId = authorId;
+		this.resolverId = resolverId;
+		this.reimbStatus = reimbStatus;
+		this.reimbTypeId = reimbTypeId;
+		this.status = status;
+		this.reimbCategory = reimbCategory;
+		this.authorUsername = authorUsername;
+	}
+
+
+
 	public ReimbursementItem(int reimbId, double amount, Timestamp submittedAt, Timestamp resolvedAt,
 			String description, int authorId, int resolverId, int reimbStatus, int reimbTypeId, String status,
 			String reimbCategory) {
@@ -154,12 +174,20 @@ public class ReimbursementItem {
 		return submittedAt;
 	}
 
+	public String getAuthorUsername() {
+		return authorUsername;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ReimbursementItem [reimbId=" + reimbId + ", amount=" + amount + ", submittedAt=" + submittedAt
 				+ ", resolvedAt=" + resolvedAt + ", description=" + description + ", authorId=" + authorId
-				+ ", resolverId=" + resolverId + ", reimbStatus=" + reimbStatus + ", reimbTypeId=" + reimbTypeId + "]";
+				+ ", resolverId=" + resolverId + ", reimbStatus=" + reimbStatus + ", reimbTypeId=" + reimbTypeId
+				+ ", status=" + status + ", reimbCategory=" + reimbCategory + ", authorUsername=" + authorUsername
+				+ "]";
 	}
+	
 	
 	
 	

@@ -12,9 +12,7 @@ function getStatusList(){
 		url: "/project1-ers/getAllItems.api",
 		method: "GET"
 		}).then(function(res){
-			res = JSON.parse(res);
-			console.log(res);
-	
+			
 			for (i = 0; i<res.length; i++){
 			newRow = $("<tr>")	
 			itemNumEl = tdTemplate.replace("%val",res[i].reimbId);
@@ -51,4 +49,13 @@ function newItemFormSubmit(){
 		
 	})
 	
+}
+
+function logOut(){
+	$.ajax({
+		url: "/project1-ers/logout.view",
+		method: "GET"
+	}).then((res) => {
+		console.log(res);
+	})
 }
