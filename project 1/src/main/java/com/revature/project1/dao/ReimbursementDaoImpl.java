@@ -169,7 +169,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		try(Connection con = dbCon.getDBConnection()){
 			
 			
-			String sql = "{? = call approve_reimb(?,?}";
+			String sql = "{? = call approve_reimb(?,?)}";
 			CallableStatement cs = con.prepareCall(sql);
 			cs.registerOutParameter(1, Types.VARCHAR);
 			cs.setInt(2,item.getReimbId());
