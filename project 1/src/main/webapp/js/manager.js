@@ -67,7 +67,6 @@ function approveItem(elem){
 	event.preventDefault();
 	itemId = $(elem).closest("tr").find("td:first-child").text();
 	
-	console.log(itemId);
 	$.ajax({
 		url:"/project1-ers/changeItem.api",
 		method: "POST",

@@ -190,7 +190,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public void rejectItem(ReimbursementItem item) {
 		try(Connection con = dbCon.getDBConnection()){
 			
-			String sql = "{? = call reject_reimb(?,?}";
+			String sql = "{? = call reject_reimb(?,?)}";
 			CallableStatement cs = con.prepareCall(sql);
 			cs.registerOutParameter(1, Types.VARCHAR);
 			cs.setInt(2,item.getReimbId());
