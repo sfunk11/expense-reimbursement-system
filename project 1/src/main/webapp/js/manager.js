@@ -28,7 +28,7 @@ function getManagerStatusList(){
 		url: "/project1-ers/getManagerItems.api",
 		method: "GET",
 		data: {
-			employeeId: $("#employeeId").val()
+			employeeId: $("#employeeId").val(),
 		}
 		}).then(res =>{
 		console.log(res);
@@ -44,9 +44,12 @@ function getManagerStatusList(){
 			itemDescEl = tdTemplate.replace("%val",res[i].description);
 			approveEl = buttonTemplate.replace("%click", "approveItem(this)").replace("%a", "apr").replace("%action","approve").replace("%N",res[i].reimbId);
 			rejectEl = buttonTemplate.replace("%click", "rejectItem(this)").replace("%a", "deny").replace("%action","reject").replace("%N",res[i].reimbId);
-			
+			if($("#status").val() == res[i].reimbStatus || $("#status").val() == 0){
 			$("#managerStatusArea").append(newRow);
-			$(newRow).append(itemNumEl,employeeEl,AmountEl,itemStatusEl,itemTypeEl,itemDescEl, approveEl, rejectEl);
+			$(newRow).append(itemNumEl,employeeEl,AmountEl,itemStatusEl,itemTypeEl,itemDescEl);
+			if (res[i.reimbStatus == 1]){
+				$("#managerStatusArea").append(approveEl, rejectEl);
+			}} 
 		}
 	}, res => {
 		console.log(res)

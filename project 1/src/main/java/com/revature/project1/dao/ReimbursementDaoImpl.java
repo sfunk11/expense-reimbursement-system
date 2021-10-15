@@ -118,7 +118,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		List<ReimbursementItem> reimbList = new ArrayList<>();
 		try(Connection con = dbCon.getDBConnection()){
 			
-			String sql = "select * from ers_reimbursement r inner join ers_reimbursement_status ers on r.reimb_status_id = ers.reimb_status_id inner join ers_reimbursement_type ert on r.reimb_type_id = ert.reimb_type_id where r.reimb_status_id = ?";
+			String sql = "select * from ers_reimbursement r inner join ers_reimbursement_status ers on r.reimb_status_id = ers.reimb_status_id inner join ers_reimbursement_type ert on r.reimb_type_id = ert.reimb_type_id inner join ers_users u on r.reimb_author=u.ers_users_id where r.reimb_status_id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1,status);
 			ResultSet rs = ps.executeQuery();
