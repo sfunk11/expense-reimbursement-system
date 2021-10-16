@@ -2,17 +2,19 @@ $(document).ready(function(){
 	getStatusList();
 	
 })
+	
+
 
  tdTemplate = "<td class = 'list-group-item>'> %val </td>";
 
 function getStatusList(){
-	
+	event.preventDefault();
 	
 	$.ajax({
 		url: "/project1-ers/getAllItems.api",
 		method: "GET"
 		}).then(function(res){
-			
+			$("#statusArea").empty()
 			for (i = 0; i<res.length; i++){
 			newRow = $("<tr>")	
 			itemNumEl = tdTemplate.replace("%val",res[i].reimbId);
@@ -20,10 +22,12 @@ function getStatusList(){
 			itemStatusEl = tdTemplate.replace("%val",res[i].status);
 			itemTypeEl = tdTemplate.replace("%val",res[i].reimbCategory);
 			itemDescEl = tdTemplate.replace("%val",res[i].description);
-			
+			if($("#status").val() == res[i].reimbStatus || $("#status").val() == 0){
 			$("#statusArea").append(newRow);
+
 			$(newRow).append(itemNumEl,AmountEl,itemStatusEl,itemTypeEl,itemDescEl);
-		}
+		}}
+	
 	})
 	
 }

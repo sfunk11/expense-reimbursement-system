@@ -51,8 +51,6 @@ function getManagerStatusList(){
 				$("#managerStatusArea").append(approveEl, rejectEl);
 			}} 
 		}
-	}, res => {
-		console.log(res)
 	})
 	
 }	
