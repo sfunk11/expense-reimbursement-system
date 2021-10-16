@@ -92,6 +92,11 @@ public class UserController {
 		res.getWriter().write(new ObjectMapper().writeValueAsString(employees));	
 	}
 		
+	public static void insertEmployee(HttpServletRequest req, HttpServletResponse res) {
+		String[] fullName = req.getParameter("name").split(" ");
+		User user = new User(req.getParameter("username"), req.getParameter("password"), fullName[0], fullName[1], req.getParameter("email"), Integer.parseInt(req.getParameter("roleId")));
+		uServ.registerUser(user);
+	}
 		
 }
 	

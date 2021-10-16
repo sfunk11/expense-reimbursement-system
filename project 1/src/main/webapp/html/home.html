@@ -8,37 +8,41 @@
 <body>
 
 	
-	<div class="container">
-		<div class="jumbotron fixed">
-			<h1 class="text-center">Welcome to Samco </h1>
-			<hr>
-			<h2 class="text-center">Employee Expense Reimbursement System </h2>
+	<div class="container ">
+		<div class="jumbotron jumbotron-fluid mt-5 mb-5">
+			<h1 class="text-center display-4 ">Welcome to Samco </h1>
+			<hr class= "my-4">
+			<h2 class="text-center lead">Employee Expense Reimbursement System </h2>
 		 </div>
-		 <nav class="navbar navbar-expand-md navbar-dark mb-2 bg-dark fixed">
+		 <nav class="navbar navbar-expand-md navbar-dark my-4 bg-dark fixed">
 		    <div class="container-fluid">
 		       
 		        <div class="navbar-collapse collapse" id="collapseNavbar">
-		            <ul class="navbar-nav ms-auto">
+		            <ul class="navbar-nav me-auto">
+		            	<li class="nav-item">
+		            	<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+			  Submit a new Expense Item
+			</button>
+		            	</li>
 		                </ul>
+		              <div class = "ms-auto">
 		                <form class="form-inline" method="get" action="/project1-ers/logout.view">
 		                 <button id="logout" type= "submit" class="btn btn-danger" >Logout</button>
 		                </form>
+		                </div>
 		             
 		        </div>
 		    </div>
 		</nav>
 		<div class = "container">
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-			  Submit a new Expense Item
-			</button>
+			
 			
 			<!-- Modal -->
-			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal fade text-center" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			  <div class="modal-dialog modal-dialog-scrollable">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="staticBackdropLabel">Submit New Expense Item</h5>
+			        <h5 class="modal-title text-center text-bold" id="staticBackdropLabel">Submit New Expense Item</h5>
 			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			      </div>
 			      
@@ -63,8 +67,8 @@
 					      <option value = "5">OTHER</option>
 					    </select>
 					  </div> 
-					  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick = "newItemFormSubmit()">Submit</button>
+					  <button type="button" class="btn btn-secondary my-2" data-bs-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary my-2" data-bs-dismiss="modal" onClick = "newItemFormSubmit()">Submit</button>
 					  </form>
 			      </div>
 			      
@@ -73,11 +77,25 @@
 			</div>
 		</div>
 		
-		<div class = "container mt-3">
-			<h4> Existing Expense Items</h4>
-			<table class = "table" >
-			<thead>
-				<tr>
+		<div class= "container">
+			<form class="text-center">
+			   <div class="form-group text-center mx-6 mb-2">
+			    <label class="font-weight-bold" for="status">Select Status:</label>
+			    <select class="form-control" id="status">
+					<option value = "0"> All </option>
+					<option value = "1">Pending</option>
+					<option value = "2">Approved</option>
+					<option value = "3">Rejected</option>
+			    </select>
+			     </div>
+			      <button id="employeeSubmit" onClick= "getStatusList()" class="btn btn-dark mb-2">Get List</button>
+			</form>
+		</div>
+		<div class = "container mt-3 border border-dark border-rounded">
+			<h4 class = "text-center my-4"> Existing Expense Items</h4>
+			<table id = "statusTable" class = "table table-bordered table-striped border border-info" >
+			<thead class = "bg-info">
+				<tr class = "text-center">
 					<th scope ="col"> Item Number </th>
 					<th scope ="col"> Amount </th>
 					<th scope ="col"> Status </th>
@@ -85,7 +103,7 @@
 					<th scope ="col"> Description </th>
 				</tr>
 			</thead>
-			<tbody id = "statusArea">
+			<tbody id = "statusArea" class="text-center">
 			</tbody>		
 			</table>
 		</div>

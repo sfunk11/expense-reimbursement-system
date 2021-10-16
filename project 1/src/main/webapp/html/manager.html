@@ -9,29 +9,79 @@
 
 
 <div class="container">
-		<div class="jumbotron fixed">
-			<h1 class="text-center">Welcome to Samco </h1>
-			<hr>
-			<h2 class="text-center">Employee Expense Reimbursement System </h2>
-			<h4 class="text-center"> Finance Manager View</h4>
+		<div class="jumbotron jumbotron-fluid mt-5 mb-5">
+			<h1 id = "welcome" class="text-center display-4">Welcome to Samco </h1>
+			<hr class = "my-4">
+			<h2 class="text-center lead">Employee Expense Reimbursement System </h2>
+			<h4 class="text-center lead"> Finance Manager View</h4>
 		 </div>
-		 <nav class="navbar navbar-expand-md navbar-dark mb-2 bg-dark fixed">
+		 <nav class="navbar navbar-expand-md navbar-dark my-2 bg-dark fixed">
 		    <div class="container-fluid">
 		       
 		        <div class="navbar-collapse collapse" id="collapseNavbar">
-		            <ul class="navbar-nav ms-auto">
-		            	 <li class="nav-item">
+		            <ul class="navbar-nav navbar-left me-auto">
+		            	 
+					      <li class="nav-item">
+					      <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#registerEmployee">Register New Employee</button>
+					     
+					      </li>
+					       <li class="nav-item">
 					        <a class="nav-link" href="/project1-ers/html/home.html">Go To Employee View</a>
 					      </li> 
 		            </ul>
-		             <form class="form-inline" method="get" action="/project1-ers/logout.view">
+		            <div class="ms-auto">
+		             <form class="form-inline navbar-right" method="get" action="/project1-ers/logout.view">
 		                 <button id="logout" type= "submit" class="btn btn-danger" >Logout</button>
 		                </form>
+	                </div>
 		        </div>
 		    </div>
 		</nav>
-		<div class = "container mt-3">
-		<div class="row text-center">
+		<div class="modal fade" id="registerEmployee">
+		    <div class="modal-dialog modal-dialog-scrollable">
+		        <div class="modal-content"> 
+		            <div class="modal-header">
+		                <h5 class="modal-title">Register a new Employee</h5> 
+		                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		            </div>
+		            <div class="modal-body">
+			      	<form id="newEmployee" name="newEmployee" method = "get" action="">
+					  <div class="form-group">
+					    <label for="employeeName">Name</label>
+					    <input class="form-control" id="employeeName" placeholder="First and Last Name" name="employeeName">
+					  </div>
+					  <div class="form-group">
+					    <label for="newUsername">New Username</label>
+					    <input class="form-control" id="newUsername" placeholder="Username" name="newUsername">
+					  </div>
+					   <div class="form-group">
+					    <label for="newPassword">Temporary Password</label>
+					    <input class="form-control" id="newPassword" placeholder="Temp Password" name="newPassword">
+					  </div>
+					  <div class="form-group">
+					    <label for="email">Employee Email</label>
+					    <input class="form-control" id="email" placeholder="Email" name="email">
+					  </div>
+					  <div>
+						 <label for="roleType">Employee Role</label>
+					    <select class="form-control" id="roleType" name="roleType">
+					      <option value = ""> Please Select a Role</option>
+					      <option value = "1">Employee</option>
+					      <option value = "2">Finance Manager</option>
+					    </select>
+					  </div> 
+					  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick = "newEmployeeFormSubmit()">Submit</button>
+					  </form>
+			      </div>
+			      
+			    </div>
+		        </div>
+		    </div>		
+		
+			  
+		<div class = "container mt-3 ">
+		<div class="row text-center my-2">
 		    <form class="form-inline text-center">
 			 <div class="form-group text-center mx-6 mb-2">
 			    <label class="font-weight-bold" for="employeeId">Show Expense Items For:</label>
@@ -40,7 +90,7 @@
 			    </select>
 			     </div>
 			      <div class="form-group text-center mx-6 mb-2">
-			    <label class="font-weight-bold" for="status">Show Expense Items For:</label>
+			    <label class="font-weight-bold" for="status">Select Status:</label>
 			    <select class="form-control" id="status">
 					<option value = "0"> All </option>
 					<option value = "1">Pending</option>
@@ -51,9 +101,11 @@
 			    <button id="employeeSubmit" onClick= "getManagerStatusList()" class="btn btn-dark mb-2">Get List</button>
 		</form>
 		</div>
-			<h4> Existing Expense Items</h4>
-			<table class = "table" >
-			<thead>
+		
+		<div class = "container mt-3 border border-dark border-rounded">
+			<h4 class="text-center my-4"> Existing Expense Items</h4>
+			<table id = "managerTable" class = "table table-bordered table-striped border border-info" >
+			<thead class = "bg-info text-center">
 				<tr>
 					<th scope ="col"> Item Number </th>
 					<th scope ="col"> Employee </th>
@@ -63,11 +115,11 @@
 					<th scope ="col"> Description </th>
 				</tr>
 			</thead>
-			<tbody id = "managerStatusArea">
+			<tbody id = "managerStatusArea" class="text-center">
 			</tbody>		
 			</table>
 		</div>
-
+</div>
 </div>
 
 
