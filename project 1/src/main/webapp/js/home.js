@@ -35,7 +35,7 @@ function newItemFormSubmit(){
 		description: $("#description").val(),
 		reimbType: $("#reimbType").find("option:selected").val()
 	}
-	console.log(itemData);
+	
 	$.ajax({
 	url:  "/project1-ers/newItem.api",
 	method: "POST",

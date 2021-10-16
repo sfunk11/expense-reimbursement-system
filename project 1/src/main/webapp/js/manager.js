@@ -98,4 +98,27 @@ function rejectItem(elem){
 		getManagerStatusList();
 	})
 }
+
+function newEmployeeFormSubmit(){
+	employeeData = {
+		name : $("#employeeName").val(),
+		username : $("#newUsername").val(),
+		password : $("#newPassword").val(),
+		email : $("#email").val(),
+		roleId : $("#roleType").find("option:selected").val()
+	};
+	
+	$.ajax({
+		url: "/project1-ers/newEmployee.api",
+		method: "POST",
+		data: employeeData
+	})
+	.then(res => {
+		alert(employeeData.name +" was added successfully. Email sent with temporary password.")
+		$("#employeeId").empty();
+		getEmployees();
+	})
+	
+}
+
  

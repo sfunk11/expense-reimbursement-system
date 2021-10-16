@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.revature.project1.dao.UserDaoImpl;
 import com.revature.project1.main.LogDriver;
+import com.revature.project1.main.SendEmail;
 import com.revature.project1.models.User;
 
 public class UserService {
@@ -60,15 +61,17 @@ public class UserService {
 	}
 	
 	
-	public User registerUser() {
-		//ToDo: Implement method
-		return null;
+	public void registerUser(User user) {
+		uDao.insert(user);
+		SendEmail.main(user);
+		
 	}
 
 	public User getEmployeeById(int id) {
 		User user = uDao.getById(id);
 	return user;
 }
+	
 	public List<User> getAllEmployees() {
 		
 		List<User> employeeList = uDao.getAll();
