@@ -50,13 +50,10 @@ public class UserController {
 		
 		User user = null;
 		if (req.getParameter("newPass").equals(req.getParameter("newPass2"))) {
-		
+			System.out.println("in matching pass");
 			user = uServ.changePassword(req.getParameter("username"), req.getParameter("fullName"), req.getParameter("newPass"));
-		} else {
-			//write logic to alert that passwords do not match, try again
-		}
-		if (req.getMethod().equals("POST")) {
-			
+		} 
+		
 			if (user == null) {
 				return "wrongcreds.view";
 			}else if (user.getRoleId() == 1){
@@ -67,10 +64,8 @@ public class UserController {
 				return "html/manager.html";
 			}
 			
-		}
-		else {
-			return "html/changePassword.html";
-		}
+			
+		
 	}	
 		
 	public static String logOut(HttpServletRequest req) {

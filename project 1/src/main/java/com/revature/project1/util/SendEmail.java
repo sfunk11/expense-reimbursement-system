@@ -1,4 +1,4 @@
-package com.revature.project1.main;
+package com.revature.project1.util;
 
 import java.util.Properties;
 
