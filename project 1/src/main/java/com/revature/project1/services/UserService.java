@@ -57,8 +57,6 @@ public class UserService {
 				uDao.update(user);
 				return user;
 			}
-		}else {
-		// logic to alert that the name and user name do not match and go back to login
 		}
 		return null;
 	}

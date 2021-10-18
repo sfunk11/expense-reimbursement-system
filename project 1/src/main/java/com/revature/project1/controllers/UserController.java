@@ -61,6 +61,8 @@ public class UserController {
 				session.setAttribute("currentUser", user);
 				return "html/home.html";
 			}else {
+				HttpSession session = req.getSession();
+				session.setAttribute("currentUser", user);
 				return "html/manager.html";
 			}
 			
