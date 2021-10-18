@@ -16,16 +16,32 @@ function getStatusList(){
 		}).then(function(res){
 			$("#statusArea").empty()
 			for (i = 0; i<res.length; i++){
+				date = new Date(res[i].submittedAt);
+				formattedSubmitDate = (date.getMonth()+1)+
+          "/"+date.getDate()+
+          "/"+date.getFullYear()+
+          " "+date.getHours()+
+          ":"+date.getMinutes()+
+          ":"+date.getSeconds();
+          date = new Date(res[i].resolvedAt);
+				formattedResolveDate = (date.getMonth()+1)+
+          "/"+date.getDate()+
+          "/"+date.getFullYear()+
+          " "+date.getHours()+
+          ":"+date.getMinutes()+
+          ":"+date.getSeconds();
 			newRow = $("<tr>")	
 			itemNumEl = tdTemplate.replace("%val",res[i].reimbId);
+			submittedEl = tdTemplate.replace("%val", formattedSubmitDate);
 			AmountEl = tdTemplate.replace("%val", "$" + res[i].amount);
 			itemStatusEl = tdTemplate.replace("%val",res[i].status);
+			resolvedEl = tdTemplate.replace("%val", formattedResolveDate);
 			itemTypeEl = tdTemplate.replace("%val",res[i].reimbCategory);
 			itemDescEl = tdTemplate.replace("%val",res[i].description);
 			if($("#status").val() == res[i].reimbStatus || $("#status").val() == 0){
 			$("#statusArea").append(newRow);
 
-			$(newRow).append(itemNumEl,AmountEl,itemStatusEl,itemTypeEl,itemDescEl);
+			$(newRow).append(itemNumEl,submittedEl, AmountEl,itemStatusEl, resolvedEl,itemTypeEl,itemDescEl);
 		}}
 	
 	})
