@@ -17,12 +17,8 @@ function getStatusList(){
 			$("#statusArea").empty()
 			for (i = 0; i<res.length; i++){
 				date = new Date(res[i].submittedAt);
-				formattedSubmitDate = (date.getMonth()+1)+
-          "/"+date.getDate()+
-          "/"+date.getFullYear()+
-          " "+date.getHours()+
-          ":"+date.getMinutes()+
-          ":"+date.getSeconds();
+				formattedSubmitDate = (date.getMonth()+1)+ "/"+date.getDate()+"/"+date.getFullYear()+ " "+date.getHours()+
+         		":"+date.getMinutes()+":"+date.getSeconds();
           date = new Date(res[i].resolvedAt);
 				formattedResolveDate = (date.getMonth()+1)+
           "/"+date.getDate()+
