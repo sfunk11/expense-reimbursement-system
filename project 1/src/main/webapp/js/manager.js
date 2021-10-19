@@ -35,20 +35,28 @@ function getManagerStatusList(){
 
 		$("#managerStatusArea").empty();
 			for (i = 0; i<res.length; i++){
-			newRow = $("<tr>")	
-			itemNumEl = tdTemplate.replace("%val",res[i].reimbId).replace("%N", res[i].reimbId);
-			employeeEl = tdTemplate.replace("%val",res[i].authorUsername);
-			AmountEl = tdTemplate.replace("%val", "$" + res[i].amount);
-			itemStatusEl = tdTemplate.replace("%val",res[i].status);
-			itemTypeEl = tdTemplate.replace("%val",res[i].reimbCategory);
-			itemDescEl = tdTemplate.replace("%val",res[i].description);
-			approveEl = buttonTemplate.replace("%click", "approveItem(this)").replace("%a", "apr").replace("%action","approve").replace("%N",res[i].reimbId);
-			rejectEl = buttonTemplate.replace("%click", "rejectItem(this)").replace("%a", "deny").replace("%action","reject").replace("%N",res[i].reimbId);
-			if($("#status").val() == res[i].reimbStatus || $("#status").val() == 0){
-			$("#managerStatusArea").append(newRow);
-			$(newRow).append(itemNumEl,employeeEl,AmountEl,itemStatusEl,itemTypeEl,itemDescEl);
-			if (res[i.reimbStatus == 1]){
-				$("#managerStatusArea").append(approveEl, rejectEl);
+				date = new Date(res[i].submittedAt);
+				formattedDate = (date.getMonth()+1)+
+          "/"+date.getDate()+
+          "/"+date.getFullYear()+
+          " "+date.getHours()+
+          ":"+date.getMinutes()+
+          ":"+date.getSeconds();
+				newRow = $("<tr>")	
+				itemNumEl = tdTemplate.replace("%val",res[i].reimbId);
+				submittedEl = tdTemplate.replace("%val", formattedDate);
+				employeeEl = tdTemplate.replace("%val",res[i].authorUsername);
+				AmountEl = tdTemplate.replace("%val", "$" + res[i].amount);
+				itemStatusEl = tdTemplate.replace("%val",res[i].status);
+				itemTypeEl = tdTemplate.replace("%val",res[i].reimbCategory);
+				itemDescEl = tdTemplate.replace("%val",res[i].description);
+				approveEl = buttonTemplate.replace("%click", "approveItem(this)").replace("%a", "apr").replace("%action","approve").replace("%N",res[i].reimbId);
+				rejectEl = buttonTemplate.replace("%click", "rejectItem(this)").replace("%a", "deny").replace("%action","reject").replace("%N",res[i].reimbId);
+				if($("#status").val() == res[i].reimbStatus || $("#status").val() == 0){
+					$("#managerStatusArea").append(newRow);
+					$(newRow).append(itemNumEl,submittedEl,employeeEl,AmountEl,itemStatusEl,itemTypeEl,itemDescEl);
+				if (res[i.reimbStatus == 1]){
+					$("#managerStatusArea").append(approveEl, rejectEl);
 			}} 
 		}
 	})

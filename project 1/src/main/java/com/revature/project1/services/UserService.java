@@ -4,8 +4,9 @@ import java.util.List;
 
 import com.revature.project1.dao.UserDaoImpl;
 import com.revature.project1.main.LogDriver;
-import com.revature.project1.main.SendEmail;
 import com.revature.project1.models.User;
+import com.revature.project1.util.PasswordUtil;
+import com.revature.project1.util.SendEmail;
 
 public class UserService {
 	
@@ -29,7 +30,7 @@ public class UserService {
 			
 			User user = uDao.getByName(username);
 			
-			if (user.getPassword().equals(password.trim())) {
+			if (user.getPassword().equals(new PasswordUtil().encryptPassword(password))) {
 				LogDriver.log.info(username + "has logged in.");
 				
 				return user;
@@ -50,12 +51,12 @@ public class UserService {
 		String[] name = fullName.split(" ");
 		if (name[0].trim().equals(user.getFirstName())) {
 			if(name[1].trim().equals(user.getLastName())) {
-				user.setPassword(password);
+				String newPass = new PasswordUtil().encryptPassword(password);
+				System.out.println(newPass);
+				user.setPassword(newPass);
 				uDao.update(user);
 				return user;
 			}
-		}else {
-		// logic to alert that the name and user name do not match and go back to login
 		}
 		return null;
 	}
