@@ -31,7 +31,7 @@ public class UserService {
 			User user = uDao.getByName(username);
 			
 			if (user.getPassword().equals(new PasswordUtil().encryptPassword(password))) {
-				LogDriver.log.info(username + "has logged in.");
+				LogDriver.log.info(username + " has logged in.");
 				
 				return user;
 			} else {
@@ -55,6 +55,7 @@ public class UserService {
 				System.out.println(newPass);
 				user.setPassword(newPass);
 				uDao.update(user);
+				LogDriver.log.info("Username: "+ user.getUsername() + "has changed their password.");
 				return user;
 			}
 		}
@@ -65,6 +66,7 @@ public class UserService {
 	public void registerUser(User user) {
 		uDao.insert(user);
 		SendEmail.main(user);
+		LogDriver.log.info("Username: "+ user.getUsername() + "was added to the database.");
 		
 	}
 

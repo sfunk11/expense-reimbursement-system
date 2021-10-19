@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.project1.dao.ExpenseDBConnection;
 import com.revature.project1.dao.UserDaoImpl;
+import com.revature.project1.main.LogDriver;
 import com.revature.project1.models.User;
 import com.revature.project1.services.UserService;
 
@@ -55,7 +56,7 @@ public class UserController {
 		} 
 		
 			if (user == null) {
-				return "wrongcreds.view";
+				return "html/wrongcreds.view";
 			}else if (user.getRoleId() == 1){
 				HttpSession session = req.getSession();
 				session.setAttribute("currentUser", user);
@@ -71,6 +72,7 @@ public class UserController {
 	}	
 		
 	public static String logOut(HttpServletRequest req) {
+			LogDriver.log.info("User has logged out.");
 			User user = null;
 			req.getSession().setAttribute("currentUser", user);
 			return "html/index.html";
@@ -85,7 +87,7 @@ public class UserController {
 		if (manager.getRoleId() == 2) {
 			employees = uServ.getAllEmployees();
 		}	
-		
+		LogDriver.log.debug("Employee list returned:" + employees);
 		res.getWriter().write(new ObjectMapper().writeValueAsString(employees));	
 	}
 		
@@ -93,6 +95,7 @@ public class UserController {
 		String[] fullName = req.getParameter("name").split(" ");
 		User user = new User(req.getParameter("username"), req.getParameter("password"), fullName[0], fullName[1], req.getParameter("email"), Integer.parseInt(req.getParameter("roleId")));
 		uServ.registerUser(user);
+		
 	}
 		
 }

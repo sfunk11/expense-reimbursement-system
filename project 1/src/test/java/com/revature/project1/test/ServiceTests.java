@@ -42,6 +42,8 @@ public class ServiceTests {
 	
 	@BeforeEach
 	public void setUp() throws Exception{
+		userList = new ArrayList<>();
+		itemList = new ArrayList<>();
 		MockitoAnnotations.initMocks(this);
 		uServ = new UserService(uDao);
 		rServ = new ReimbursementService(rDao);
@@ -107,5 +109,19 @@ public class ServiceTests {
 		List<ReimbursementItem> rList = rDao.getByUsername("mthompson");
 		assertEquals("Hotel Stay", rList.get(0).getDescription());
 	}
+	
+	@Test
+	public void submitItemTest(){
+		List<ReimbursementItem> list = rServ.submitItem(item3, testUser);
+		assertEquals("Hotel Stay", list.get(0).getDescription());
+	}
+	
+	@Test
+	public void getReimbByIdTest() {
+		ReimbursementItem item = rServ.getReimbById(2);
+		assertEquals("Rental Car", item.getDescription());
+		
+	}
+	
 }
 

@@ -31,7 +31,11 @@ function getStatusList(){
 			submittedEl = tdTemplate.replace("%val", formattedSubmitDate);
 			AmountEl = tdTemplate.replace("%val", "$" + res[i].amount);
 			itemStatusEl = tdTemplate.replace("%val",res[i].status);
-			resolvedEl = tdTemplate.replace("%val", formattedResolveDate);
+			if(res[i].reimbStatus != 1){
+				resolvedEl = tdTemplate.replace("%val", formattedResolveDate);
+			}else{
+				resolvedEl = tdTemplate.replace("%val", "  ");
+			}
 			itemTypeEl = tdTemplate.replace("%val",res[i].reimbCategory);
 			itemDescEl = tdTemplate.replace("%val",res[i].description);
 			if($("#status").val() == res[i].reimbStatus || $("#status").val() == 0){
@@ -60,7 +64,8 @@ function newItemFormSubmit(){
 		.then((res) =>{
 			
 		alert("Item added Successfully");
-			$("#statusArea").empty();
+		$("#newItem")[0].reset();
+		$("#statusArea").empty();
 		getStatusList();
 		
 	})

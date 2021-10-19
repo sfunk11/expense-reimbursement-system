@@ -24,7 +24,7 @@ public static String process(HttpServletRequest req) {
 			
 		case "/project1-ers/manager.view":
 			System.out.println("in manager dispatcher");
-			return "/html/manager.html";
+			return "html/manager.html";
 			
 		 default:
 			 	System.out.println("in  default html");
