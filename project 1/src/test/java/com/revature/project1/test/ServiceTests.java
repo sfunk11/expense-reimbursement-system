@@ -107,5 +107,19 @@ public class ServiceTests {
 		List<ReimbursementItem> rList = rDao.getByUsername("mthompson");
 		assertEquals("Hotel Stay", rList.get(0).getDescription());
 	}
+	
+	@Test
+	public void submitItemTest(){
+		List<ReimbursementItem> list = rServ.submitItem(item3, testUser);
+		assertEquals("Hotel Stay", list.get(0).getDescription());
+	}
+	
+	@Test
+	public void getReimbByIdTest() {
+		ReimbursementItem item = rServ.getReimbById(2);
+		assertEquals("Rental Car", item.getDescription());
+		
+	}
+	
 }
 
