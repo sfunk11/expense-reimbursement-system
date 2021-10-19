@@ -42,6 +42,8 @@ public class ServiceTests {
 	
 	@BeforeEach
 	public void setUp() throws Exception{
+		userList = new ArrayList<>();
+		itemList = new ArrayList<>();
 		MockitoAnnotations.initMocks(this);
 		uServ = new UserService(uDao);
 		rServ = new ReimbursementService(rDao);
