@@ -76,8 +76,8 @@ public class ReimbursementController {
 	}
 	
 	public static void submitNewItem(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException, ServletException {
-		Part file = req.getPart("file");
-		FileInputStream filecontent = (FileInputStream) file.getInputStream();
+		Part file = req.getPart("receipt");
+		ByteArrayInputStream filecontent =file.getInputStream();
 		DataInputStream dis = new DataInputStream(filecontent);
 		byte[] bytes = new byte[16384];
 		 dis.readFully(bytes);

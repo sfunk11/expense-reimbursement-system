@@ -48,17 +48,23 @@ function getStatusList(){
 	
 }
 
-function newItemFormSubmit(form){
+function newItemFormSubmit(){
 	
-	event.preventDefault();
-	console.log(form);
+	let myForm = document.getElementById('newItem');
+	console.log(myForm);
 	
-	itemData = new FormData(form);
+	itemData = new FormData(myForm);
+	
+for (var pair of itemData.entries()) {
+    console.log(pair[0]+ ', ' + pair[1]); 
+}
 	
 	$.ajax({
 	url:  "/project1-ers/newItem.api",
 	method: "POST",
-		data: itemData
+		data: itemData,
+		processData: false,
+    	contentType: false
 	})
 		.then((res) =>{
 			
