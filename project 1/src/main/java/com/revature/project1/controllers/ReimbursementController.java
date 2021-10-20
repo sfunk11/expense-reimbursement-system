@@ -1,8 +1,9 @@
 package com.revature.project1.controllers;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,11 +77,17 @@ public class ReimbursementController {
 	}
 	
 	public static void submitNewItem(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException, ServletException {
-		Part file = req.getPart("receipt");
-		ByteArrayInputStream filecontent =file.getInputStream();
-		DataInputStream dis = new DataInputStream(filecontent);
+		Part filePart = req.getPart("receipt");
+		InputStream filecontent = filePart.getInputStream();
+		File file = new File("receipt");
+		FileOutputStream outFile = new FileOutputStream(file);
 		byte[] bytes = new byte[16384];
-		 dis.readFully(bytes);
+		
+		int read = 0;
+		while((read = filecontent.read(bytes)) != -1) {
+			outFile.write(bytes, 0 , read);
+		}
+		
 		
 		User user = (User)req.getSession().getAttribute("currentUser");
 		ReimbursementItem newItem = new ReimbursementItem(Double.parseDouble(req.getParameter("amount")), req.getParameter("description"), user.getUserId(), Integer.parseInt(req.getParameter("reimbType")) );
