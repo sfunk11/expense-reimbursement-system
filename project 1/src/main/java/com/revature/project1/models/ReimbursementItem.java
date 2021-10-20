@@ -1,5 +1,6 @@
 package com.revature.project1.models;
 
+import java.io.InputStream;
 import java.sql.Timestamp;
 
 public class ReimbursementItem {
@@ -17,12 +18,14 @@ public class ReimbursementItem {
 	private String status;
 	private String reimbCategory;
 	private String authorUsername;
+	private byte[] receipt;
 	
 	public ReimbursementItem() {
 		
 	}
 
-	
+
+
 	public ReimbursementItem(int reimbId, double amount, Timestamp submittedAt, Timestamp resolvedAt,
 			String description, int authorId, int resolverId, int reimbStatus, int reimbTypeId, String status,
 			String reimbCategory, String authorUsername) {
@@ -177,6 +180,19 @@ public class ReimbursementItem {
 	public String getAuthorUsername() {
 		return authorUsername;
 	}
+	
+
+
+	public byte[] getReceipt() {
+		return receipt;
+	}
+
+
+
+	public void setReceipt(byte[] receipt) {
+		this.receipt = receipt;
+	}
+
 
 
 	@Override

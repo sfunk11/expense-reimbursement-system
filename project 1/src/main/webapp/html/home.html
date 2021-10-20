@@ -53,7 +53,7 @@
 			      </div>
 			      
 			      <div class="modal-body">
-			      	<form id="newItem" name="newItem" method = "get" action="">
+			      	<form id="newItem" name="newItem" method = "post" action="" enctype="multipart/form-data">
 					  <div class="form-group">
 					    <label for="amount">Reimbursement Amount</label>
 					    <input class="form-control" id="amount" placeholder="$0.00" name="amount">
@@ -73,8 +73,12 @@
 					      <option value = "5">OTHER</option>
 					    </select>
 					  </div> 
+					  <div class="mb-3">
+						  <label for="receipt" class="form-label">Receipt</label>
+						  <input class="form-control form-control-sm" id="receipt" type="file">
+					</div>
 					  <button type="button" class="btn btn-secondary my-2" data-bs-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary my-2" data-bs-dismiss="modal" onClick = "newItemFormSubmit()">Submit</button>
+			        <button type="button" class="btn btn-primary my-2" data-bs-dismiss="modal" onClick = "newItemFormSubmit($('#newItem'))">Submit</button>
 					  </form>
 			      </div>
 			      

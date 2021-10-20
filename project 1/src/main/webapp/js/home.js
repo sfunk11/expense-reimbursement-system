@@ -48,13 +48,12 @@ function getStatusList(){
 	
 }
 
-function newItemFormSubmit(){
+function newItemFormSubmit(form){
 	
-	itemData = {
-		amount: $("#amount").val(),
-		description: $("#description").val(),
-		reimbType: $("#reimbType").find("option:selected").val()
-	}
+	event.preventDefault();
+	console.log(form);
+	
+	itemData = new FormData(form);
 	
 	$.ajax({
 	url:  "/project1-ers/newItem.api",
