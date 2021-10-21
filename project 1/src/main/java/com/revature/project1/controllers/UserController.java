@@ -83,6 +83,9 @@ public class UserController {
 		HttpSession session = req.getSession();
 		User manager = (User)session.getAttribute("currentUser");
 		List<User> employees = new ArrayList<>();
+		if (manager == null) {
+			res.getWriter().write(new ObjectMapper().writeValueAsString(null));
+		}
 		
 		if (manager.getRoleId() == 2) {
 			employees = uServ.getAllEmployees();

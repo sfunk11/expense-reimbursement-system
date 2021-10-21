@@ -80,8 +80,14 @@ for (var pair of itemData.entries()) {
 function logOut(){
 	$.ajax({
 		url: "/project1-ers/logout.view",
-		method: "GET"
+		method: "GET",
+		cache: false
 	}).then((res) => {
-		console.log(res);
+		
+	    history.pushState(null, null, null);
+	    window.addEventListener('popstate', function () {
+	        history.pushState(null, null, null);
+	    });
+
 	})
 }
