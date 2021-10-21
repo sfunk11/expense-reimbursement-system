@@ -31,7 +31,6 @@ public class ServiceTests {
 	
 
 	private User testUser = new User(3, "mthompson","5f4dcc3b5aa765d61d8327deb882cf99", "Michael", "Thompson", "mthompson@email.com", 1, "Employee");
-	private User testUser1 = new User(3, "mthompson","7c6a180b36896a0a8c02787eeafb0e4c", "Michael", "Thompson", "mthompson@email.com", 1, "Employee");
 	private User testManager = new User(1, "sfunk", "5f4dcc3b5aa765d61d8327deb882cf99", "Sam", "Funk", "sfunk@email.com", 2, "Manager");
 	private ReimbursementItem item1 = new ReimbursementItem(1,360.50,null, null, "Hotel Stay", 3,0, 1, 2, "Pending" , "TRAVEL", "mthompson");
 	private ReimbursementItem item2 = new ReimbursementItem(2,420.00,null, null, "Rental Car", 3,0, 1, 2, "Pending" , "TRAVEL", "mthompson");

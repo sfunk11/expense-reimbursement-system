@@ -60,11 +60,11 @@ public class ReimbursementService {
 		
 		if(isApproved) {
 			rdao.approveItem(item);
-			LogDriver.log.info("Item"+ item.getReimbId() + "for"+item.getAuthorUsername() + "was approved.");
+			LogDriver.log.info("Item "+ item.getReimbId() + " for "+item.getAuthorUsername() + " was approved.");
 		}
 		else {
 			rdao.rejectItem(item);
-			LogDriver.log.info("Item"+ item.getReimbId() + "for"+item.getAuthorUsername() + "was denied.");
+			LogDriver.log.info("Item "+ item.getReimbId() + " for "+item.getAuthorUsername() + " was denied.");
 		}
 	}
 	
