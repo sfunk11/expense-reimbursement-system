@@ -5,16 +5,19 @@ getEmployees();
 
 
 tdTemplate = "<td class = 'list-group-item>'>%val</td>";
-buttonTemplate = "<button class='btn btn-sm btn-outline-dark text-capitalize' onClick='%click' id='%a%N'>%action</button>";
+buttonTemplate = "<button class='btn btn-sm btn-info me-3 text-capitalize' onClick='%click' id='%a%N'>%action</button>";
  
  function getEmployees(){
 	
 	$.ajax({
 		url:"/project1-ers/getEmployees.api",
-		method: "GET"
+		method: "GET",
+		cache: false
 	}).then(res => {
 		res = JSON.parse(res);
 		optionTemplate = "<option value = %id>%fname %lname</option>";
+		defaultEl ='<option value = "0"> All Employees </option>'
+		$("#employeeId").append(defaultEl);
 		for(i=0; i<res.length; i++){
 			optionEl = optionTemplate.replace("%id",res[i].userId).replace("%fname", res[i].firstName).replace("%lname", res[i].lastName);
 			$("#employeeId").append(optionEl);
@@ -55,8 +58,8 @@ function getManagerStatusList(){
 				if($("#status").val() == res[i].reimbStatus || $("#status").val() == 0){
 					$("#managerStatusArea").append(newRow);
 					$(newRow).append(itemNumEl,submittedEl,employeeEl,AmountEl,itemStatusEl,itemTypeEl,itemDescEl);
-				if (res[i.reimbStatus == 1]){
-					$("#managerStatusArea").append(approveEl, rejectEl);
+				if (res[i].reimbStatus == 1){
+					$(newRow).append(approveEl, rejectEl);
 			}} 
 		}
 	})
@@ -68,7 +71,11 @@ function logOut(){
 		url: "/project1-ers/logout.view",
 		method: "GET"
 	}).then((res) => {
-		console.log(res);
+		 history.pushState(null, null, null);
+	    window.addEventListener('popstate', function () {
+	        history.pushState(null, null, null);
+	    });
+
 	})
 }
 
@@ -82,7 +89,8 @@ function approveItem(elem){
 		data: {
 			reimbId: itemId,
 			isApproved: true
-		}
+		},
+		cache:false
 	}).then(res => {
 		getManagerStatusList();
 	})
@@ -92,14 +100,15 @@ function rejectItem(elem){
 	event.preventDefault();
 	itemId = $(elem).closest("tr").find("td:first-child").text();
 	
-	console.log(itemId);
+	
 	$.ajax({
 		url:"/project1-ers/changeItem.api",
 		method: "POST",
 		data: {
 			reimbId: itemId,
 			isApproved: false
-		}
+		},
+		cache:false
 	}).then(res => {
 		getManagerStatusList();
 	})

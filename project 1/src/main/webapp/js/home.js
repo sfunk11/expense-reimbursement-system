@@ -50,16 +50,21 @@ function getStatusList(){
 
 function newItemFormSubmit(){
 	
-	itemData = {
-		amount: $("#amount").val(),
-		description: $("#description").val(),
-		reimbType: $("#reimbType").find("option:selected").val()
-	}
+	let myForm = document.getElementById('newItem');
+	console.log(myForm);
+	
+	itemData = new FormData(myForm);
+	
+for (var pair of itemData.entries()) {
+    console.log(pair[0]+ ', ' + pair[1]); 
+}
 	
 	$.ajax({
 	url:  "/project1-ers/newItem.api",
 	method: "POST",
-		data: itemData
+		data: itemData,
+		processData: false,
+    	contentType: false
 	})
 		.then((res) =>{
 			
@@ -75,8 +80,14 @@ function newItemFormSubmit(){
 function logOut(){
 	$.ajax({
 		url: "/project1-ers/logout.view",
-		method: "GET"
+		method: "GET",
+		cache: false
 	}).then((res) => {
-		console.log(res);
+		
+	    history.pushState(null, null, null);
+	    window.addEventListener('popstate', function () {
+	        history.pushState(null, null, null);
+	    });
+
 	})
 }

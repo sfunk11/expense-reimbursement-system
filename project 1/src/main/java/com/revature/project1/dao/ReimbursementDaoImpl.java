@@ -95,7 +95,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			cs.registerOutParameter(1, Types.VARCHAR);
 			cs.setDouble(2,t.getAmount());
 			cs.setString(3, t.getDescription());
-			cs.setBytes(4, null);
+			cs.setBytes(4, t.getReceipt());
 			cs.setInt(5,  t.getAuthorId());
 			cs.setInt(6,  t.getReimbTypeId());
 			cs.execute();
