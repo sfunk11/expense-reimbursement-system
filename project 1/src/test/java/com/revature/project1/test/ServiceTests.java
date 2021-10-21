@@ -88,38 +88,35 @@ public class ServiceTests {
 	
 	@Test
 	public void getEmployeeListTest() {
-		List<User> employeeList = uServ.getAllEmployees();
-		assertEquals("sfunk", employeeList.get(0).getUsername());
+		assertEquals(userList, uServ.getAllEmployees());
 	}
 	
 	@Test
 	public void getEmployeebyIdTest() {
-		User user =uServ.getEmployeeById(3);
-		assertEquals("mthompson@email.com", user.getEmail());
+		assertEquals(testUser, uServ.getEmployeeById(3));
 	}
 	
 	@Test
 	public void getAllReimbTest() {
 		List<ReimbursementItem> rlist = rDao.getAll();
-		assertEquals("Dinner with client", rlist.get(2).getDescription());
+		assertEquals(rlist, itemList);
 	}
 	
 	@Test
 	public void getReimbursementByUserTest() {
 		List<ReimbursementItem> rList = rDao.getByUsername("mthompson");
-		assertEquals("Hotel Stay", rList.get(0).getDescription());
+		assertEquals(rList, itemList);
 	}
 	
 	@Test
 	public void submitItemTest(){
-		List<ReimbursementItem> list = rServ.submitItem(item3, testUser);
-		assertEquals("Hotel Stay", list.get(0).getDescription());
+		assertEquals(itemList, rServ.submitItem(item3, testUser));
 	}
 	
 	@Test
 	public void getReimbByIdTest() {
 		ReimbursementItem item = rServ.getReimbById(2);
-		assertEquals("Rental Car", item.getDescription());
+		assertEquals(item, item2);
 		
 	}
 	
