@@ -73,8 +73,9 @@ public class UserController {
 		
 	public static String logOut(HttpServletRequest req) {
 			LogDriver.log.info("User has logged out.");
-			User user = null;
-			req.getSession().setAttribute("currentUser", user);
+			
+			req.getSession().setAttribute("currentUser", null);
+			req.getSession().invalidate();
 			return "html/index.html";
 		}
 		

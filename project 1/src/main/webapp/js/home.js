@@ -51,7 +51,7 @@ function getStatusList(){
 function newItemFormSubmit(){
 	
 	let myForm = document.getElementById('newItem');
-	console.log(myForm);
+	
 	
 	itemData = new FormData(myForm);
 	

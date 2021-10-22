@@ -34,7 +34,6 @@ function getManagerStatusList(){
 			employeeId: $("#employeeId").val(),
 		}
 		}).then(res =>{
-		console.log(res);
 
 		$("#managerStatusArea").empty();
 			for (i = 0; i<res.length; i++){
