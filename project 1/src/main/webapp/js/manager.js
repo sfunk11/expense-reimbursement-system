@@ -60,7 +60,10 @@ function getManagerStatusList(){
 					$(newRow).append(itemNumEl,submittedEl,employeeEl,AmountEl,itemStatusEl,itemTypeEl,itemDescEl);
 				if (res[i].reimbStatus == 1){
 					$(newRow).append(approveEl, rejectEl);
-			}} 
+				} else{
+					$(newRow).append("<td>");
+				}
+			} 
 		}
 	})
 	

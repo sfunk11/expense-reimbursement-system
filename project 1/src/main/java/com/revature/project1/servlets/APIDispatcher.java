@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.project1.controllers.ReimbursementController;
 import com.revature.project1.controllers.UserController;
 import com.revature.project1.models.ReimbursementItem;
+import com.revature.project1.models.User;
 
 public class APIDispatcher {
 
@@ -21,7 +22,13 @@ public static void process(HttpServletRequest req, HttpServletResponse res) thro
 		
 		case "/project1-ers/getAllItems.api":
 			System.out.println("in getAll.api dispatcher");
+			User currentUser = (User)req.getSession().getAttribute("currentUser");
+			if (currentUser == null) {
+				res.getWriter().write(new ObjectMapper().writeValueAsString(new ArrayList<ReimbursementItem>()));
+			}
+			else {
 			ReimbursementController.getAllForUser(req, res);
+			}
 			break;
 		
 		case "/project1-ers/getManagerItems.api":

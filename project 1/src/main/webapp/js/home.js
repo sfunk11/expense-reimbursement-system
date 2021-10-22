@@ -24,7 +24,7 @@ function getStatusList(){
           "/"+date.getDate()+
           "/"+date.getFullYear()+
           " "+date.getHours()+
-          ":"+date.getMinutes()+
+          ":"+(date.getMinutes()<10? '0':'') + date.getMinutes()+
           ":"+date.getSeconds();
 			newRow = $("<tr>")	
 			itemNumEl = tdTemplate.replace("%val",res[i].reimbId);

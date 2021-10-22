@@ -34,8 +34,10 @@ public class ReimbursementController {
 	
 	
 	public static void getAllItems(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException {
+		
 		System.out.println("in getALL items");
 		
+	
 		List<ReimbursementItem> itemList = new ArrayList<>();
 		
 		if (Integer.parseInt(req.getParameter("employeeId")) == 0) {
@@ -45,11 +47,15 @@ public class ReimbursementController {
 		String response = OBJECT_MAPPER.writeValueAsString(itemList);
 		System.out.println(response);
 		res.setContentType("application/json");
+		res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+		res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+		res.setHeader("Expires", "0"); // Proxies.
 		res.getWriter().write(response); //Set breakpoint here to look at string contents before response is written
 		
 		}else {
 			getAllForUser(req, res);
 		}
+	
 	}
 	
 	

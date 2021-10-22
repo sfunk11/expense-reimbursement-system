@@ -64,6 +64,9 @@ public class UserService {
 	
 	
 	public void registerUser(User user) {
+		String newPass = new PasswordUtil().encryptPassword(user.getPassword());
+		user.setPassword(newPass);
+	
 		uDao.insert(user);
 		SendEmail.main(user);
 		LogDriver.log.info("Username: "+ user.getUsername() + "was added to the database.");
